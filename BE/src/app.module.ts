@@ -8,6 +8,8 @@ import { UsersModule } from './modules/users/users.module';
 import { PracticeModule } from './modules/practice/practice.module';
 import { ExamsModule } from './modules/exams/exams.module';
 import { ClassesModule } from './modules/classes/classes.module';
+import { GamificationModule } from './modules/gamification/gamification.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { RolesGuard } from './guards/roles.guard';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
@@ -25,6 +27,8 @@ import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
     PracticeModule,
     ExamsModule,
     ClassesModule,
+    GamificationModule,
+    NotificationsModule,
   ],
   controllers: [],
   providers: [
