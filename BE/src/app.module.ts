@@ -6,6 +6,8 @@ import { LoggerModule } from './core/logger/logger.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { PracticeModule } from './modules/practice/practice.module';
+import { ExamsModule } from './modules/exams/exams.module';
+import { ClassesModule } from './modules/classes/classes.module';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { RolesGuard } from './guards/roles.guard';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
@@ -21,6 +23,8 @@ import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
     AuthModule,
     UsersModule,
     PracticeModule,
+    ExamsModule,
+    ClassesModule,
   ],
   controllers: [],
   providers: [
