@@ -1,0 +1,157 @@
+// Shared configuration for all skills - used by both FullTest and PartPractice components
+// This ensures consistency between "Bộ đề đầy đủ" and "Làm theo phần"
+
+export const readingPartsConfig = [
+  { 
+    id: 1, 
+    label: 'PART 1', 
+    title: 'Multiple Choice', 
+    questions: 10, 
+    bgColor: 'bg-blue-100', 
+    textColor: 'text-blue-600',
+    description: 'Đọc hiểu và chọn đáp án đúng',
+  },
+  { 
+    id: 2, 
+    label: 'PART 2', 
+    title: 'Gap Fill', 
+    questions: 10, 
+    bgColor: 'bg-purple-100', 
+    textColor: 'text-purple-600',
+    description: 'Điền từ vào chỗ trống',
+  },
+  { 
+    id: 3, 
+    label: 'PART 3', 
+    title: 'Heading Matching', 
+    questions: 10, 
+    bgColor: 'bg-green-100', 
+    textColor: 'text-green-600',
+    description: 'Nối tiêu đề với đoạn văn',
+  },
+  { 
+    id: 4, 
+    label: 'PART 4', 
+    title: 'True/False/Not Given', 
+    questions: 10, 
+    bgColor: 'bg-orange-100', 
+    textColor: 'text-orange-600',
+    description: 'Xác định đúng/sai/không có thông tin',
+  },
+];
+
+export const listeningPartsConfig = [
+  { 
+    id: 1, 
+    label: 'PART 1', 
+    title: 'Short Conversations', 
+    questions: 8, 
+    bgColor: 'bg-indigo-100', 
+    textColor: 'text-indigo-600',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    sections: [] as { title: string; questionCount: number; audioUrl: string }[],
+    description: 'Hội thoại ngắn',
+  },
+  { 
+    id: 2, 
+    label: 'PART 2', 
+    title: 'Long Conversations', 
+    questions: 12, 
+    bgColor: 'bg-purple-100', 
+    textColor: 'text-purple-600',
+    audioUrl: '',
+    sections: [
+      { title: 'Conversation 1', questionCount: 4, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+      { title: 'Conversation 2', questionCount: 4, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+      { title: 'Conversation 3', questionCount: 4, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' },
+    ],
+    description: 'Hội thoại dài',
+  },
+  { 
+    id: 3, 
+    label: 'PART 3', 
+    title: 'Academic Lectures', 
+    questions: 15, 
+    bgColor: 'bg-pink-100', 
+    textColor: 'text-pink-600',
+    audioUrl: '',
+    sections: [
+      { title: 'Lecture 1', questionCount: 5, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' },
+      { title: 'Lecture 2', questionCount: 5, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' },
+      { title: 'Lecture 3', questionCount: 5, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3' },
+    ],
+    description: 'Bài giảng học thuật',
+  },
+];
+
+export const writingPartsConfig = [
+  { 
+    id: 1, 
+    label: 'PART 1', 
+    title: 'Email Writing', 
+    questions: 1, 
+    bgColor: 'bg-cyan-100', 
+    textColor: 'text-cyan-600',
+    minWords: 120,
+    maxWords: 150,
+    timeLimit: 20,
+    time: 20,
+    description: 'Viết email',
+    requirements: [
+      'Respond to all points in the email',
+      'Use appropriate greeting and closing',
+      'Maintain a friendly and informal tone',
+    ],
+  },
+  { 
+    id: 2, 
+    label: 'PART 2', 
+    title: 'Essay Writing', 
+    questions: 1, 
+    bgColor: 'bg-emerald-100', 
+    textColor: 'text-emerald-600',
+    minWords: 250,
+    maxWords: 300,
+    timeLimit: 40,
+    time: 40,
+    description: 'Viết luận',
+    requirements: [
+      'Discuss both views presented in the question',
+      'Give your own opinion with supporting reasons',
+      'Use clear paragraphing and linking words',
+    ],
+  },
+];
+
+export const speakingPartsConfig = [
+  { 
+    id: 1, 
+    label: 'PART 1', 
+    title: 'Social Interaction', 
+    questions: 3, 
+    bgColor: 'bg-rose-100', 
+    textColor: 'text-rose-600',
+    timeLimit: 3,
+    description: 'Let\'s talk about yourself',
+  },
+  { 
+    id: 2, 
+    label: 'PART 2', 
+    title: 'Solution Discussion', 
+    questions: 1, 
+    bgColor: 'bg-amber-100', 
+    textColor: 'text-amber-600',
+    timeLimit: 3,
+    description: 'Situation and solution',
+  },
+  { 
+    id: 3, 
+    label: 'PART 3', 
+    title: 'Topic Development', 
+    questions: 4, 
+    bgColor: 'bg-violet-100', 
+    textColor: 'text-violet-600',
+    timeLimit: 4,
+    description: 'Topic card discussion',
+  },
+];
