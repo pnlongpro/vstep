@@ -273,9 +273,9 @@ export function ExamManagementPage() {
                           </span>
                         </td>
                         <td className="py-3 px-4 text-sm text-gray-600">
-                          {activeTab === 'writing' ? `${exam.tasks} tasks` : 
-                           activeTab === 'speaking' ? `${exam.parts} parts` : 
-                           `${exam.questions} câu`}
+                          {activeTab === 'writing' ? `${'tasks' in exam ? exam.tasks : 0} tasks` : 
+                           activeTab === 'speaking' ? `${'parts' in exam ? exam.parts : 0} parts` : 
+                           `${'questions' in exam ? exam.questions : 0} câu`}
                         </td>
                         <td className="py-3 px-4 text-sm text-gray-600">{exam.duration} phút</td>
                         <td className="py-3 px-4">
@@ -382,7 +382,7 @@ export function ExamManagementPage() {
       </div>
 
       {/* Create Exam Modal */}
-      {showCreateModal && (
+      {showCreateModal && activeTab !== 'approvals' && (
         <CreateExamModalAdvanced
           skill={activeTab}
           onClose={() => setShowCreateModal(false)}
@@ -394,7 +394,7 @@ export function ExamManagementPage() {
       )}
 
       {/* Exam Detail Modal */}
-      {selectedExam && !showEditModal && (
+      {selectedExam && !showEditModal && activeTab !== 'approvals' && (
         <ExamDetailModal
           exam={selectedExam}
           skill={activeTab}

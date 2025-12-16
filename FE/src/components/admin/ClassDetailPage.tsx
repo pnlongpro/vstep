@@ -1436,9 +1436,7 @@ function ImportExcelModal({ onClose, className }: { onClose: () => void; classNa
           {step === 'upload' && (
             <>
               <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">Hủy</button>
-              <button onClick={handleFileUpload} className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2">
-                <Upload className="size-4" />Tải lên và tiếp tục
-              </button>
+              <div></div>
             </>
           )}
           {step === 'preview' && (

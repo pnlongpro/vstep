@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import headsetIcon from 'figma:asset/809bdbe6bac7640546e286e3f93ea65154b426fd.png';
+import { Headphones } from 'lucide-react';
 
 interface SpeakingPreparationModalProps {
   timeLeft: number;
@@ -18,12 +18,8 @@ export function SpeakingPreparationModal({ timeLeft, onComplete }: SpeakingPrepa
       <div className="bg-white rounded-lg border-4 border-blue-400 p-8 max-w-lg w-full mx-4">
         <div className="flex flex-col items-center text-center space-y-5">
           {/* Headset Icon */}
-          <div className="relative w-40 h-40 flex items-center justify-center">
-            <img 
-              src={headsetIcon} 
-              alt="Headset" 
-              className="w-full h-full object-contain"
-            />
+          <div className="relative w-40 h-40 flex items-center justify-center bg-blue-50 rounded-full">
+            <Headphones className="w-24 h-24 text-blue-600" />
           </div>
 
           {/* Main Text */}

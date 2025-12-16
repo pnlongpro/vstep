@@ -286,7 +286,7 @@ export function AdminMaterialsPage() {
                 <div className={`p-3 bg-${stat.color}-50 rounded-lg`}>
                   <Icon className={`size-6 text-${stat.color}-600`} />
                 </div>
-                {stat.label === 'Chờ duyệt' && stat.value > 0 && (
+                {stat.label === 'Chờ duyệt' && typeof stat.value === 'number' && stat.value > 0 && (
                   <span className="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-full animate-pulse">
                     Mới
                   </span>

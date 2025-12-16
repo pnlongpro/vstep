@@ -10,7 +10,7 @@ interface DashboardProps {
   initialRole?: UserRole;
 }
 
-type UserRole = 'student' | 'teacher' | 'admin';
+type UserRole = 'student' | 'teacher' | 'admin' | 'uploader';
 type AdminTab = 'dashboard' | 'students' | 'teachers' | 'courses' | 'question-bank' | 'exam-bank' | 'ai-grading' | 'classes' | 'analytics' | 'settings';
 type TeacherTab = 'dashboard' | 'my-classes' | 'student-progress' | 'grade-writing' | 'grade-speaking' | 'materials' | 'assignments' | 'messages' | 'profile';
 type StudentTab = 'dashboard' | 'my-courses' | 'practice' | 'mock-tests' | 'results' | 'learning-path' | 'achievements' | 'schedule';

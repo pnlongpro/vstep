@@ -562,9 +562,9 @@ export function ExamInterface({ examId, examTitle, studentName = 'Học viên', 
     if (currentPartId.startsWith('L')) {
       const part = mockListeningData.parts.find(p => p.id === currentPartId);
       if (!part) return 0;
-      if ('questions' in part) {
+      if ('questions' in part && part.questions) {
         return part.questions.length;
-      } else if ('sections' in part) {
+      } else if ('sections' in part && part.sections) {
         return part.sections.reduce((sum, section) => sum + section.questions.length, 0);
       }
     } else if (currentPartId.startsWith('R')) {
@@ -588,9 +588,9 @@ export function ExamInterface({ examId, examTitle, studentName = 'Học viên', 
       if (!part) return 0;
       
       let questionIds: number[] = [];
-      if ('questions' in part) {
+      if ('questions' in part && part.questions) {
         questionIds = part.questions.map(q => q.id);
-      } else if ('sections' in part) {
+      } else if ('sections' in part && part.sections) {
         questionIds = part.sections.flatMap(section => section.questions.map(q => q.id));
       }
       

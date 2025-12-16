@@ -2,15 +2,15 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { WinstonLoggerService } from './config/winston-logger.service';
-import { ConfigService } from './config/config.service';
+import { AppConfigService } from './config/app-config.service';
+import { WinstonLoggerService } from './core/logger/winston-logger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: new WinstonLoggerService(),
   });
 
-  const configService = app.get(ConfigService);
+  const configService = app.get(AppConfigService);
 
   // Global validation pipe
   app.useGlobalPipes(
@@ -37,7 +37,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  const port = configService.getPort();
+  const port = configService.port;
   await app.listen(port);
   console.log(`Application is running on: http://localhost:${port}`);
   console.log(`Swagger docs available at: http://localhost:${port}/api/docs`);

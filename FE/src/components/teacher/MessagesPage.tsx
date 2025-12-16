@@ -27,7 +27,7 @@ export function MessagesPage() {
 
   const conversations: Conversation[] = [
     {
-      id: 1,
+      id: "1",
       name: 'Nguyễn Văn A',
       avatar: '👨‍🎓',
       lastMessage: 'Em cảm ơn thầy đã giải đáp!',
@@ -37,7 +37,7 @@ export function MessagesPage() {
       type: 'student'
     },
     {
-      id: 2,
+      id: "2",
       name: 'VSTEP B1 - Lớp sáng',
       avatar: '👥',
       lastMessage: 'Thầy ơi, bài tập deadline là ngày nào ạ?',
@@ -47,7 +47,7 @@ export function MessagesPage() {
       type: 'group'
     },
     {
-      id: 3,
+      id: "3",
       name: 'Trần Thị B',
       avatar: '👩‍🎓',
       lastMessage: 'Thầy có thể giải thích thêm về grammar không ạ?',
@@ -57,7 +57,7 @@ export function MessagesPage() {
       type: 'student'
     },
     {
-      id: 4,
+      id: "4",
       name: 'VSTEP B2 - Lớp chiều',
       avatar: '👥',
       lastMessage: 'Lịch thi đã được cập nhật',
@@ -70,33 +70,33 @@ export function MessagesPage() {
 
   const messages: Message[] = [
     {
-      id: 1,
+      id: "1",
       sender: 'other',
       content: 'Thầy ơi, em có thắc mắc về bài tập Writing ạ',
       timestamp: '10:15 AM',
       avatar: '👨‍🎓'
     },
     {
-      id: 2,
+      id: "2",
       sender: 'me',
       content: 'Chào em, thầy nghe đây. Em có thắc mắc gì?',
       timestamp: '10:16 AM'
     },
     {
-      id: 3,
+      id: "3",
       sender: 'other',
       content: 'Em không hiểu phần Task Achievement, thầy có thể giải thích thêm không ạ?',
       timestamp: '10:18 AM',
       avatar: '👨‍🎓'
     },
     {
-      id: 4,
+      id: "4",
       sender: 'me',
       content: 'Task Achievement là tiêu chí đánh giá xem bài viết của em có trả lời đúng yêu cầu đề bài không. Em cần chú ý...',
       timestamp: '10:20 AM'
     },
     {
-      id: 5,
+      id: "5",
       sender: 'other',
       content: 'Em cảm ơn thầy đã giải đáp!',
       timestamp: '10:30 AM',

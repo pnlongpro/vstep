@@ -151,7 +151,7 @@ export function ClassMessagesPage() {
       isPinned: true,
     },
     {
-      id: 1,
+      id: "1",
       type: 'direct',
       name: 'Nguyễn Văn A',
       avatar: '👨‍🎓',
@@ -173,7 +173,7 @@ export function ClassMessagesPage() {
       isPinned: true,
     },
     {
-      id: 2,
+      id: "2",
       type: 'direct',
       name: 'Trần Thị B',
       avatar: '👩‍🎓',
@@ -183,7 +183,7 @@ export function ClassMessagesPage() {
       online: false,
     },
     {
-      id: 5,
+      id: "5",
       type: 'group',
       name: '🗣️ Nhóm học Speaking',
       avatar: '🗣️',
@@ -196,7 +196,7 @@ export function ClassMessagesPage() {
 
   const classGeneralMessages: Message[] = [
     {
-      id: 1,
+      id: "1",
       senderId: 999,
       senderName: 'GV Minh',
       senderAvatar: '👨‍🏫',
@@ -208,7 +208,7 @@ export function ClassMessagesPage() {
       isPinned: true,
     },
     {
-      id: 2,
+      id: "2",
       senderId: 2,
       senderName: 'Trần Thị B',
       senderAvatar: '👩‍🎓',
@@ -217,7 +217,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 3,
+      id: "3",
       senderId: 1,
       senderName: 'Nguyễn Văn A',
       senderAvatar: '👨‍🎓',
@@ -226,7 +226,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 4,
+      id: "4",
       senderId: 999,
       senderName: 'GV Minh',
       senderAvatar: '👨‍🏫',
@@ -236,7 +236,7 @@ export function ClassMessagesPage() {
       isFromTeacher: true,
     },
     {
-      id: 5,
+      id: "5",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -245,7 +245,7 @@ export function ClassMessagesPage() {
       isMe: true,
     },
     {
-      id: 6,
+      id: "6",
       senderId: 999,
       senderName: 'GV Minh',
       senderAvatar: '👨‍🏫',
@@ -259,7 +259,7 @@ export function ClassMessagesPage() {
       ],
     },
     {
-      id: 7,
+      id: "7",
       senderId: 5,
       senderName: 'Hoàng Văn E',
       senderAvatar: '👨‍🔬',
@@ -268,7 +268,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 8,
+      id: "8",
       senderId: 999,
       senderName: 'GV Minh',
       senderAvatar: '👨‍🏫',
@@ -282,7 +282,7 @@ export function ClassMessagesPage() {
 
   const vstepB2ClassMessages: Message[] = [
     {
-      id: 1,
+      id: "1",
       senderId: 2,
       senderName: 'Trần Thị B',
       senderAvatar: '👩‍🎓',
@@ -291,7 +291,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 2,
+      id: "2",
       senderId: 2,
       senderName: 'Trần Thị B',
       senderAvatar: '👩‍🎓',
@@ -304,7 +304,7 @@ export function ClassMessagesPage() {
       ],
     },
     {
-      id: 3,
+      id: "3",
       senderId: 1,
       senderName: 'Nguyễn Văn A',
       senderAvatar: '👨‍🎓',
@@ -313,7 +313,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 4,
+      id: "4",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -325,7 +325,7 @@ export function ClassMessagesPage() {
       ],
     },
     {
-      id: 5,
+      id: "5",
       senderId: 5,
       senderName: 'Hoàng Văn E',
       senderAvatar: '👨‍🔬',
@@ -335,7 +335,7 @@ export function ClassMessagesPage() {
       image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400',
     },
     {
-      id: 6,
+      id: "6",
       senderId: 3,
       senderName: 'Lê Văn C',
       senderAvatar: '👨‍💼',
@@ -344,7 +344,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 7,
+      id: "7",
       senderId: 2,
       senderName: 'Trần Thị B',
       senderAvatar: '👩‍🎓',
@@ -356,7 +356,7 @@ export function ClassMessagesPage() {
 
   const speakingGroupMessages: Message[] = [
     {
-      id: 1,
+      id: "1",
       senderId: 3,
       senderName: 'Lê Văn C',
       senderAvatar: '👨‍💼',
@@ -365,7 +365,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 2,
+      id: "2",
       senderId: 1,
       senderName: 'Nguyễn Văn A',
       senderAvatar: '👨‍🎓',
@@ -374,7 +374,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 3,
+      id: "3",
       senderId: 2,
       senderName: 'Trần Thị B',
       senderAvatar: '👩‍🎓',
@@ -387,7 +387,7 @@ export function ClassMessagesPage() {
       ],
     },
     {
-      id: 4,
+      id: "4",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -399,7 +399,7 @@ export function ClassMessagesPage() {
       ],
     },
     {
-      id: 5,
+      id: "5",
       senderId: 5,
       senderName: 'Hoàng Văn E',
       senderAvatar: '👨‍🔬',
@@ -408,7 +408,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 6,
+      id: "6",
       senderId: 3,
       senderName: 'Lê Văn C',
       senderAvatar: '👨‍💼',
@@ -420,7 +420,7 @@ export function ClassMessagesPage() {
 
   const adminMessages: Message[] = [
     {
-      id: 1,
+      id: "1",
       senderId: 998,
       senderName: 'Admin VSTEPRO',
       senderAvatar: '🛡️',
@@ -429,7 +429,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 2,
+      id: "2",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -438,7 +438,7 @@ export function ClassMessagesPage() {
       isMe: true,
     },
     {
-      id: 3,
+      id: "3",
       senderId: 998,
       senderName: 'Admin VSTEPRO',
       senderAvatar: '🛡️',
@@ -447,7 +447,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 4,
+      id: "4",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -456,7 +456,7 @@ export function ClassMessagesPage() {
       isMe: true,
     },
     {
-      id: 5,
+      id: "5",
       senderId: 998,
       senderName: 'Admin VSTEPRO',
       senderAvatar: '🛡️',
@@ -469,7 +469,7 @@ export function ClassMessagesPage() {
       ],
     },
     {
-      id: 6,
+      id: "6",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -481,7 +481,7 @@ export function ClassMessagesPage() {
 
   const teacherMessages: Message[] = [
     {
-      id: 1,
+      id: "1",
       senderId: 999,
       senderName: 'GV Minh',
       senderAvatar: '👨‍🏫',
@@ -491,7 +491,7 @@ export function ClassMessagesPage() {
       isFromTeacher: true,
     },
     {
-      id: 2,
+      id: "2",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -500,7 +500,7 @@ export function ClassMessagesPage() {
       isMe: true,
     },
     {
-      id: 3,
+      id: "3",
       senderId: 999,
       senderName: 'GV Minh',
       senderAvatar: '👨‍🏫',
@@ -510,7 +510,7 @@ export function ClassMessagesPage() {
       isFromTeacher: true,
     },
     {
-      id: 4,
+      id: "4",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -519,7 +519,7 @@ export function ClassMessagesPage() {
       isMe: true,
     },
     {
-      id: 5,
+      id: "5",
       senderId: 999,
       senderName: 'GV Minh',
       senderAvatar: '👨‍🏫',
@@ -534,7 +534,7 @@ export function ClassMessagesPage() {
       ],
     },
     {
-      id: 6,
+      id: "6",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -543,7 +543,7 @@ export function ClassMessagesPage() {
       isMe: true,
     },
     {
-      id: 7,
+      id: "7",
       senderId: 999,
       senderName: 'GV Minh',
       senderAvatar: '👨‍🏫',
@@ -556,7 +556,7 @@ export function ClassMessagesPage() {
 
   const mockMessages: Message[] = [
     {
-      id: 1,
+      id: "1",
       senderId: 1,
       senderName: 'Nguyễn Văn A',
       senderAvatar: '👨‍🎓',
@@ -565,7 +565,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 2,
+      id: "2",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -574,7 +574,7 @@ export function ClassMessagesPage() {
       isMe: true,
     },
     {
-      id: 3,
+      id: "3",
       senderId: 1,
       senderName: 'Nguyễn Văn A',
       senderAvatar: '👨‍🎓',
@@ -587,7 +587,7 @@ export function ClassMessagesPage() {
       ],
     },
     {
-      id: 4,
+      id: "4",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',
@@ -597,7 +597,7 @@ export function ClassMessagesPage() {
       image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400',
     },
     {
-      id: 5,
+      id: "5",
       senderId: 1,
       senderName: 'Nguyễn Văn A',
       senderAvatar: '👨‍🎓',
@@ -606,7 +606,7 @@ export function ClassMessagesPage() {
       isMe: false,
     },
     {
-      id: 6,
+      id: "6",
       senderId: 0,
       senderName: 'Me',
       senderAvatar: '👤',

@@ -1,6 +1,6 @@
 import { BookOpen, Headphones, PenTool, Mic, Trophy, Target, Clock, Calendar, TrendingUp, Flame } from 'lucide-react';
 
-export type GoalType = 'skill' | 'quantity' | 'time' | 'tests' | 'streak' | 'score';
+export type GoalType = 'skill' | 'quantity' | 'time' | 'streak' | 'score';
 export type GoalPeriod = 'daily' | 'weekly' | 'monthly';
 export type SkillType = 'listening' | 'reading' | 'writing' | 'speaking' | 'all';
 

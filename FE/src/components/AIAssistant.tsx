@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Send, Mic, Upload, Copy, RotateCcw, Bot, User, Sparkles, MessageCircle, Trash2, Clock, Crown, Zap, FileText, Volume2, CheckCircle, XCircle, AlertCircle, X } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface AIAssistantProps {
   onBack: () => void;

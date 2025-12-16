@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Home, Book, Headphones, PenTool, Mic, GraduationCap, Monitor, ChevronDown, ChevronRight, Menu, X, Facebook, FileText, Users, Heart, Mail, Bot, Sparkles, Target, LayoutDashboard, Bell, ClipboardList, User, MessageCircle } from 'lucide-react';
-import logoImage from 'figma:asset/0a20b2e75c15f09d98fc24bd0f6b028b4eeb4661.png';
 
 type Page = 'home' | 'reading' | 'listening' | 'writing' | 'speaking' | 'exam' | 'virtual-exam' | 'statistics' | 'history' | 'profile' | 'ai-assistant' | 'goals' | 'dashboard' | 'ai-grading' | 'notifications' | 'documents' | 'assignments';
 
@@ -78,11 +77,11 @@ export function Sidebar({ currentPage, onNavigate, onShowPartModal, onShowFullTe
       }`}>
         {/* Logo Section */}
         <div className="p-4 bg-gray-900 border-b border-gray-700 flex items-center gap-3">
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-            <img src={logoImage} alt="VSTEPRO" className="w-7 h-7 object-contain" />
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <GraduationCap className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h2 className="text-white text-sm">VSTEPRO</h2>
+            <h2 className="text-white text-lg font-bold">VSTEPRO</h2>
           </div>
         </div>
 
