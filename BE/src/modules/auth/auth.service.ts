@@ -2,6 +2,7 @@ import {
   Injectable,
   UnauthorizedException,
   BadRequestException,
+  ConflictException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
@@ -12,9 +13,12 @@ import * as bcrypt from 'bcrypt';
 import { Session } from './entities/session.entity';
 import { PasswordResetToken } from './entities/password-reset-token.entity';
 import { EmailVerificationToken } from './entities/email-verification-token.entity';
+import { OAuthAccount, OAuthProvider } from './entities/oauth-account.entity';
+import { LoginHistory, LoginStatus, LoginMethod } from './entities/login-history.entity';
+import { SecurityAlert, AlertType, AlertSeverity } from './entities/security-alert.entity';
 import { UsersService } from '../users/users.service';
 import { User, UserStatus } from '../users/entities/user.entity';
-import { RegisterDto, LoginDto, AuthResponseDto, UserResponseDto, TokensDto } from './dto';
+import { RegisterDto, LoginDto, AuthResponseDto, UserResponseDto, TokensDto, GoogleAuthDto } from './dto';
 
 export interface JwtPayload {
   sub: string;
@@ -34,6 +38,12 @@ export class AuthService {
     private readonly passwordResetTokenRepository: Repository<PasswordResetToken>,
     @InjectRepository(EmailVerificationToken)
     private readonly emailVerificationTokenRepository: Repository<EmailVerificationToken>,
+    @InjectRepository(OAuthAccount)
+    private readonly oauthAccountRepository: Repository<OAuthAccount>,
+    @InjectRepository(LoginHistory)
+    private readonly loginHistoryRepository: Repository<LoginHistory>,
+    @InjectRepository(SecurityAlert)
+    private readonly securityAlertRepository: Repository<SecurityAlert>,
   ) {}
 
   /**
@@ -651,5 +661,373 @@ export class AuthService {
     }
 
     return ip;
+  }
+
+  // ==================== OAuth (Google) ====================
+
+  /**
+   * Authenticate with Google
+   */
+  async googleAuth(
+    dto: GoogleAuthDto,
+    ipAddress?: string,
+    userAgent?: string,
+  ): Promise<AuthResponseDto> {
+    const { accessToken, googleId, email, name, picture } = dto;
+
+    // Validate Google token (in production, should verify with Google API)
+    if (!accessToken) {
+      throw new BadRequestException('Access token không hợp lệ');
+    }
+
+    // Check if OAuth account exists
+    let oauthAccount = await this.oauthAccountRepository.findOne({
+      where: {
+        provider: OAuthProvider.GOOGLE,
+        providerId: googleId,
+      },
+      relations: ['user'],
+    });
+
+    let user: User;
+
+    if (oauthAccount) {
+      // Existing OAuth user - login
+      user = await this.usersService.findById(oauthAccount.userId);
+    } else {
+      // Check if email already exists
+      const existingUser = await this.usersService.findByEmail(email);
+
+      if (existingUser) {
+        // Link Google to existing account
+        oauthAccount = this.oauthAccountRepository.create({
+          userId: existingUser.id,
+          provider: OAuthProvider.GOOGLE,
+          providerId: googleId,
+          email,
+          name,
+          avatar: picture,
+          accessToken,
+        });
+        await this.oauthAccountRepository.save(oauthAccount);
+        user = existingUser;
+      } else {
+        // Create new user
+        const nameParts = (name || '').split(' ');
+        const firstName = nameParts[0] || 'User';
+        const lastName = nameParts.slice(1).join(' ') || '';
+
+        user = await this.usersService.create({
+          email: email.toLowerCase(),
+          password: crypto.randomBytes(32).toString('hex'), // Random password
+          firstName,
+          lastName,
+        });
+
+        // Verify email automatically
+        await this.usersService.verifyEmail(user.id);
+
+        // Update avatar if provided
+        if (picture) {
+          // Update user avatar
+        }
+
+        // Create OAuth account link
+        oauthAccount = this.oauthAccountRepository.create({
+          userId: user.id,
+          provider: OAuthProvider.GOOGLE,
+          providerId: googleId,
+          email,
+          name,
+          avatar: picture,
+          accessToken,
+        });
+        await this.oauthAccountRepository.save(oauthAccount);
+      }
+    }
+
+    // Check user status
+    if (user.status === UserStatus.SUSPENDED) {
+      throw new UnauthorizedException('Tài khoản đã bị khóa');
+    }
+
+    // Generate tokens
+    const tokens = await this.generateTokens(user);
+
+    // Create session
+    await this.createSession(
+      user.id,
+      tokens.accessToken,
+      tokens.refreshToken,
+      ipAddress,
+      userAgent,
+    );
+
+    // Update last login
+    await this.usersService.updateLastLogin(user.id);
+
+    // Get full user data
+    const fullUser = await this.usersService.findById(user.id);
+
+    return {
+      ...tokens,
+      user: UserResponseDto.fromEntity(fullUser),
+    };
+  }
+
+  /**
+   * Link OAuth account to existing user
+   */
+  async linkOAuthAccount(
+    userId: string,
+    provider: OAuthProvider,
+    providerId: string,
+    data: { email?: string; name?: string; avatar?: string; accessToken?: string },
+  ): Promise<{ message: string }> {
+    // Check if already linked
+    const existing = await this.oauthAccountRepository.findOne({
+      where: {
+        provider,
+        providerId,
+      },
+    });
+
+    if (existing) {
+      if (existing.userId === userId) {
+        throw new ConflictException('Tài khoản đã được liên kết');
+      }
+      throw new ConflictException('Tài khoản Google này đã liên kết với tài khoản khác');
+    }
+
+    // Create link
+    const oauthAccount = this.oauthAccountRepository.create({
+      userId,
+      provider,
+      providerId,
+      email: data.email,
+      name: data.name,
+      avatar: data.avatar,
+      accessToken: data.accessToken,
+    });
+
+    await this.oauthAccountRepository.save(oauthAccount);
+
+    return { message: 'Đã liên kết tài khoản thành công' };
+  }
+
+  /**
+   * Unlink OAuth account
+   */
+  async unlinkOAuthAccount(
+    userId: string,
+    provider: OAuthProvider,
+  ): Promise<{ message: string }> {
+    const account = await this.oauthAccountRepository.findOne({
+      where: {
+        userId,
+        provider,
+      },
+    });
+
+    if (!account) {
+      throw new BadRequestException('Không tìm thấy liên kết tài khoản');
+    }
+
+    // Check if user has password (can't unlink if no other auth method)
+    const user = await this.usersService.findByIdWithPassword(userId);
+    const otherOAuthAccounts = await this.oauthAccountRepository.count({
+      where: { userId },
+    });
+
+    if (!user.password && otherOAuthAccounts <= 1) {
+      throw new BadRequestException('Không thể hủy liên kết. Vui lòng đặt mật khẩu trước.');
+    }
+
+    await this.oauthAccountRepository.delete(account.id);
+
+    return { message: 'Đã hủy liên kết tài khoản' };
+  }
+
+  /**
+   * Get linked OAuth accounts
+   */
+  async getLinkedAccounts(userId: string): Promise<{
+    provider: string;
+    email: string;
+    linkedAt: string;
+  }[]> {
+    const accounts = await this.oauthAccountRepository.find({
+      where: { userId },
+    });
+
+    return accounts.map((a) => ({
+      provider: a.provider,
+      email: a.email,
+      linkedAt: a.createdAt.toISOString(),
+    }));
+  }
+
+  // ==================== Login History ====================
+
+  /**
+   * Record login attempt
+   */
+  async recordLoginAttempt(
+    userId: string | null,
+    email: string,
+    status: LoginStatus,
+    method: LoginMethod,
+    ipAddress?: string,
+    userAgent?: string,
+    failureReason?: string,
+  ): Promise<LoginHistory> {
+    const entry = this.loginHistoryRepository.create({
+      userId,
+      email,
+      status,
+      method,
+      failureReason,
+      ipAddress,
+      userAgent,
+    });
+
+    return this.loginHistoryRepository.save(entry);
+  }
+
+  /**
+   * Get login history for user
+   */
+  async getLoginHistory(
+    userId: string,
+    page: number = 1,
+    limit: number = 20,
+  ): Promise<{
+    items: any[];
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+  }> {
+    const [items, total] = await this.loginHistoryRepository.findAndCount({
+      where: { userId },
+      order: { createdAt: 'DESC' },
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+    return {
+      items: items.map((item) => ({
+        id: item.id,
+        status: item.status,
+        method: item.method,
+        ipAddress: this.maskIpAddress(item.ipAddress),
+        location: item.location || 'Unknown',
+        deviceType: item.deviceType || 'unknown',
+        deviceName: item.deviceName || 'Unknown Device',
+        browser: item.browser || 'Unknown',
+        os: item.os || 'Unknown',
+        createdAt: item.createdAt,
+      })),
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    };
+  }
+
+  // ==================== Security Alerts ====================
+
+  /**
+   * Create security alert
+   */
+  async createSecurityAlert(
+    userId: string,
+    type: AlertType,
+    severity: AlertSeverity,
+    title: string,
+    description: string,
+    metadata?: Record<string, any>,
+  ): Promise<SecurityAlert> {
+    const alert = this.securityAlertRepository.create({
+      userId,
+      type,
+      severity,
+      title,
+      description,
+      metadata,
+    });
+
+    return this.securityAlertRepository.save(alert);
+  }
+
+  /**
+   * Get security alerts for user
+   */
+  async getSecurityAlerts(userId: string): Promise<{
+    alerts: any[];
+    unreadCount: number;
+    total: number;
+  }> {
+    const alerts = await this.securityAlertRepository.find({
+      where: { userId, isDismissed: false },
+      order: { createdAt: 'DESC' },
+      take: 50,
+    });
+
+    const unreadCount = alerts.filter((a) => !a.isRead).length;
+
+    return {
+      alerts: alerts.map((a) => ({
+        id: a.id,
+        type: a.type,
+        severity: a.severity,
+        title: a.title,
+        description: a.description,
+        metadata: a.metadata,
+        isDismissed: a.isDismissed,
+        isRead: a.isRead,
+        createdAt: a.createdAt,
+      })),
+      unreadCount,
+      total: alerts.length,
+    };
+  }
+
+  /**
+   * Dismiss security alert
+   */
+  async dismissSecurityAlert(
+    userId: string,
+    alertId: string,
+  ): Promise<{ message: string }> {
+    const alert = await this.securityAlertRepository.findOne({
+      where: { id: alertId, userId },
+    });
+
+    if (!alert) {
+      throw new BadRequestException('Alert không tồn tại');
+    }
+
+    await this.securityAlertRepository.update(alertId, {
+      isDismissed: true,
+      dismissedAt: new Date(),
+    });
+
+    return { message: 'Đã ẩn thông báo' };
+  }
+
+  /**
+   * Mark alert as read
+   */
+  async markAlertAsRead(
+    userId: string,
+    alertId: string,
+  ): Promise<{ message: string }> {
+    await this.securityAlertRepository.update(
+      { id: alertId, userId },
+      { isRead: true, readAt: new Date() },
+    );
+
+    return { message: 'OK' };
   }
 }

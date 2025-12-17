@@ -19,11 +19,12 @@ import {
 } from '@nestjs/swagger';
 import { Request } from 'express';
 import { AuthService } from './auth.service';
-import { RegisterDto, LoginDto, RefreshTokenDto, AuthResponseDto, UserResponseDto, TokensDto } from './dto';
+import { RegisterDto, LoginDto, RefreshTokenDto, AuthResponseDto, UserResponseDto, TokensDto, GoogleAuthDto, LinkOAuthDto } from './dto';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
 import { ResendVerificationDto } from './dto/resend-verification.dto';
+import { OAuthProvider } from './entities/oauth-account.entity';
 import { Public } from '../../common/decorators/public.decorator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { User } from '../users/entities/user.entity';
@@ -187,5 +188,95 @@ export class AuthController {
   ): Promise<{ message: string; revokedCount: number }> {
     const token = req.headers.authorization?.replace('Bearer ', '') || '';
     return this.authService.revokeAllSessions(user.id, token);
+  }
+
+  // ==================== OAuth (Google) ====================
+
+  @Post('google/token')
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Đăng nhập/Đăng ký bằng Google' })
+  @ApiResponse({ status: 200, description: 'Đăng nhập thành công', type: AuthResponseDto })
+  async googleAuth(
+    @Body() dto: GoogleAuthDto,
+    @Req() req: Request,
+  ): Promise<AuthResponseDto> {
+    const ipAddress = req.ip || req.socket.remoteAddress;
+    const userAgent = req.headers['user-agent'];
+    return this.authService.googleAuth(dto, ipAddress, userAgent);
+  }
+
+  @Post('link/google')
+  @ApiBearerAuth()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Liên kết tài khoản Google' })
+  async linkGoogle(
+    @CurrentUser() user: User,
+    @Body() dto: LinkOAuthDto,
+  ): Promise<{ message: string }> {
+    return this.authService.linkOAuthAccount(
+      user.id,
+      OAuthProvider.GOOGLE,
+      dto.googleId,
+      { accessToken: dto.accessToken },
+    );
+  }
+
+  @Delete('link/google')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Hủy liên kết tài khoản Google' })
+  async unlinkGoogle(@CurrentUser() user: User): Promise<{ message: string }> {
+    return this.authService.unlinkOAuthAccount(user.id, OAuthProvider.GOOGLE);
+  }
+
+  @Get('linked-accounts')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Lấy danh sách tài khoản đã liên kết' })
+  async getLinkedAccounts(@CurrentUser() user: User) {
+    return this.authService.getLinkedAccounts(user.id);
+  }
+
+  // ==================== Login History ====================
+
+  @Get('login-history')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Lấy lịch sử đăng nhập' })
+  async getLoginHistory(
+    @CurrentUser() user: User,
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 20,
+  ) {
+    return this.authService.getLoginHistory(user.id, page, limit);
+  }
+
+  // ==================== Security Alerts ====================
+
+  @Get('security-alerts')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Lấy thông báo bảo mật' })
+  async getSecurityAlerts(@CurrentUser() user: User) {
+    return this.authService.getSecurityAlerts(user.id);
+  }
+
+  @Post('security-alerts/:id/dismiss')
+  @ApiBearerAuth()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Ẩn thông báo bảo mật' })
+  async dismissSecurityAlert(
+    @CurrentUser() user: User,
+    @Param('id') alertId: string,
+  ): Promise<{ message: string }> {
+    return this.authService.dismissSecurityAlert(user.id, alertId);
+  }
+
+  @Post('security-alerts/:id/read')
+  @ApiBearerAuth()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Đánh dấu đã đọc thông báo' })
+  async markAlertAsRead(
+    @CurrentUser() user: User,
+    @Param('id') alertId: string,
+  ): Promise<{ message: string }> {
+    return this.authService.markAlertAsRead(user.id, alertId);
   }
 }

@@ -9,6 +9,9 @@ import { JwtStrategy, JwtRefreshStrategy } from './strategies';
 import { Session } from './entities/session.entity';
 import { PasswordResetToken } from './entities/password-reset-token.entity';
 import { EmailVerificationToken } from './entities/email-verification-token.entity';
+import { OAuthAccount } from './entities/oauth-account.entity';
+import { LoginHistory } from './entities/login-history.entity';
+import { SecurityAlert } from './entities/security-alert.entity';
 import { UsersModule } from '../users/users.module';
 import { User } from '../users/entities/user.entity';
 
@@ -30,6 +33,9 @@ import { User } from '../users/entities/user.entity';
       User,
       PasswordResetToken,
       EmailVerificationToken,
+      OAuthAccount,
+      LoginHistory,
+      SecurityAlert,
     ]),
     UsersModule,
   ],
