@@ -13,18 +13,18 @@
 ## Tổng quan Database
 
 ### Thông tin chung
-- **Database Engine**: PostgreSQL 14+
+- **Database Engine**: Mysql 8.0+
 - **Character Set**: UTF-8
 - **Collation**: Vietnamese (vi_VN)
 - **Timezone**: Asia/Ho_Chi_Minh
 - **Tổng số bảng**: 40+ tables
-- **Storage Engine**: Default (PostgreSQL)
+- **Storage Engine**: Default (Mysql)
 
 ### Nguyên tắc thiết kế
 1. **Normalization**: Chuẩn hóa đến 3NF
 2. **UUID Primary Keys**: Sử dụng UUID thay vì auto-increment
-3. **Soft Delete**: Sử dụng deleted_at thay vì xóa thật
-4. **Timestamps**: Mọi bảng có created_at, updated_at
+3. **Soft Delete**: Sử dụng deletedAt thay vì xóa thật
+4. **Timestamps**: Mọi bảng có createdAt, updatedAt
 5. **JSONB**: Sử dụng cho flexible data
 6. **Indexes**: Index cho foreign keys và search fields
 7. **Constraints**: NOT NULL, CHECK, UNIQUE, FOREIGN KEY
@@ -37,59 +37,59 @@
 | Bảng | Mô tả | Rows (estimated) |
 |------|-------|------------------|
 | users | Tất cả người dùng trong hệ thống | 15,000 |
-| user_profiles | Thông tin chi tiết người dùng | 15,000 |
+| userProfiles | Thông tin chi tiết người dùng | 15,000 |
 | roles | Vai trò trong hệ thống | 3 |
 | permissions | Quyền hạn | 50 |
-| user_stats | Thống kê hoạt động người dùng | 15,000 |
-| login_history | Lịch sử đăng nhập | 500,000 |
+| userStats | Thống kê hoạt động người dùng | 15,000 |
+| loginHistory | Lịch sử đăng nhập | 500,000 |
 | sessions | Phiên đăng nhập active | 2,000 |
-| password_reset_tokens | Token reset mật khẩu | 100 |
-| activity_logs | Nhật ký hoạt động | 1,000,000 |
+| passwordResetTokens | Token reset mật khẩu | 100 |
+| activityLogs | Nhật ký hoạt động | 1,000,000 |
 
 ### 2. Student Tables (Học viên)
 | Bảng | Mô tả | Rows (estimated) |
 |------|-------|------------------|
-| student_profiles | Profile học viên | 12,000 |
+| studentProfiles | Profile học viên | 12,000 |
 | enrollments | Ghi danh khóa học/lớp | 20,000 |
-| student_test_results | Kết quả thi của học viên | 200,000 |
-| student_attendance | Điểm danh học viên | 100,000 |
-| student_achievements | Thành tích học viên | 50,000 |
-| student_notes | Ghi chú của học viên | 30,000 |
-| student_progress | Tiến độ học viên | 20,000 |
-| lesson_progress | Tiến độ từng bài học | 100,000 |
+| studentTestResults | Kết quả thi của học viên | 200,000 |
+| studentAttendance | Điểm danh học viên | 100,000 |
+| studentAchievements | Thành tích học viên | 50,000 |
+| studentNotes | Ghi chú của học viên | 30,000 |
+| studentProgress | Tiến độ học viên | 20,000 |
+| lessonProgress | Tiến độ từng bài học | 100,000 |
 
 ### 3. Teacher Tables (Giáo viên)
 | Bảng | Mô tả | Rows (estimated) |
 |------|-------|------------------|
-| teacher_profiles | Profile giáo viên | 250 |
-| teacher_stats | Thống kê giảng dạy | 250 |
-| teacher_reviews | Đánh giá giáo viên | 5,000 |
-| teacher_availability | Lịch khả dụng | 1,000 |
-| teacher_time_off | Nghỉ phép | 500 |
-| teacher_evaluations | Đánh giá định kỳ | 1,000 |
+| teacherProfiles | Profile giáo viên | 250 |
+| teacherStats | Thống kê giảng dạy | 250 |
+| teacherReviews | Đánh giá giáo viên | 5,000 |
+| teacherAvailability | Lịch khả dụng | 1,000 |
+| teacherTimeOff | Nghỉ phép | 500 |
+| teacherEvaluations | Đánh giá định kỳ | 1,000 |
 
 ### 4. Class Tables (Lớp học)
 | Bảng | Mô tả | Rows (estimated) |
 |------|-------|------------------|
 | classes | Lớp học | 50 |
-| class_teachers | Giáo viên phụ trách lớp | 60 |
-| class_students | Học viên trong lớp | 1,500 |
-| class_schedules | Lịch học | 150 |
-| class_sessions | Các buổi học | 2,000 |
-| session_attendance | Điểm danh từng buổi | 50,000 |
-| class_invitations | Link mời vào lớp | 100 |
-| class_assignments | Bài tập của lớp | 500 |
-| class_stats | Thống kê lớp học | 50 |
+| classTeachers | Giáo viên phụ trách lớp | 60 |
+| classStudents | Học viên trong lớp | 1,500 |
+| classSchedules | Lịch học | 150 |
+| classSessions | Các buổi học | 2,000 |
+| sessionAttendance | Điểm danh từng buổi | 50,000 |
+| classInvitations | Link mời vào lớp | 100 |
+| classAssignments | Bài tập của lớp | 500 |
+| classStats | Thống kê lớp học | 50 |
 
 ### 5. Content Tables (Nội dung)
 | Bảng | Mô tả | Rows (estimated) |
 |------|-------|------------------|
 | courses | Khóa học | 100 |
-| course_modules | Module trong khóa học | 500 |
+| courseModules | Module trong khóa học | 500 |
 | lessons | Bài học | 2,000 |
 | materials | Tài liệu | 5,000 |
-| material_folders | Thư mục tài liệu | 200 |
-| content_versions | Phiên bản nội dung | 10,000 |
+| materialFolders | Thư mục tài liệu | 200 |
+| contentVersions | Phiên bản nội dung | 10,000 |
 
 ### 6. Exam & Question Tables (Đề thi & Câu hỏi)
 | Bảng | Mô tả | Rows (estimated) |
@@ -97,35 +97,35 @@
 | questions | Ngân hàng câu hỏi | 10,000 |
 | passages | Đoạn văn Reading | 500 |
 | exams | Đề thi | 300 |
-| exam_sections | Phần của đề thi | 1,200 |
-| exam_questions | Câu hỏi trong đề | 30,000 |
+| examSections | Phần của đề thi | 1,200 |
+| examQuestions | Câu hỏi trong đề | 30,000 |
 | assignments | Bài tập | 500 |
 | submissions | Bài nộp | 20,000 |
-| ai_grading_logs | Log chấm AI | 10,000 |
+| aiGradingLogs | Log chấm AI | 10,000 |
 
 ### 7. Notification Tables (Thông báo)
 | Bảng | Mô tả | Rows (estimated) |
 |------|-------|------------------|
 | notifications | Thông báo | 500,000 |
-| notification_preferences | Tùy chọn thông báo | 15,000 |
-| notification_templates | Mẫu thông báo | 50 |
-| push_subscriptions | Đăng ký push notification | 5,000 |
-| notification_logs | Log gửi thông báo | 1,000,000 |
+| notificationPreferences | Tùy chọn thông báo | 15,000 |
+| notificationTemplates | Mẫu thông báo | 50 |
+| pushSubscriptions | Đăng ký push notification | 5,000 |
+| notificationLogs | Log gửi thông báo | 1,000,000 |
 
 ### 8. Analytics & Reporting Tables
 | Bảng | Mô tả | Rows (estimated) |
 |------|-------|------------------|
-| analytics_events | Sự kiện analytics | 5,000,000 |
-| daily_stats | Thống kê theo ngày | 1,000 |
+| analyticsEvents | Sự kiện analytics | 5,000,000 |
+| dailyStats | Thống kê theo ngày | 1,000 |
 | reports | Báo cáo đã tạo | 5,000 |
 
 ### 9. Gamification Tables
 | Bảng | Mô tả | Rows (estimated) |
 |------|-------|------------------|
 | badges | Định nghĩa huy hiệu | 50 |
-| user_badges | Huy hiệu của user | 50,000 |
+| userBadges | Huy hiệu của user | 50,000 |
 | goals | Mục tiêu | 30,000 |
-| goal_progress | Tiến độ mục tiêu | 30,000 |
+| goalProgress | Tiến độ mục tiêu | 30,000 |
 
 ### 10. Payment Tables (Optional)
 | Bảng | Mô tả | Rows (estimated) |
@@ -143,71 +143,71 @@
 ```mermaid
 erDiagram
     %% Core Entities
-    users ||--o{ user_profiles : has
+    users ||--o{ userProfiles : has
     users ||--o{ sessions : has
-    users ||--o{ login_history : has
-    users ||--o{ user_stats : has
-    users ||--o{ activity_logs : creates
+    users ||--o{ loginHistory : has
+    users ||--o{ userStats : has
+    users ||--o{ activityLogs : creates
     users ||--o{ notifications : receives
     
     %% Student Entities
-    users ||--o| student_profiles : is
+    users ||--o| studentProfiles : is
     users ||--o{ enrollments : enrolls
-    users ||--o{ student_test_results : takes
-    users ||--o{ student_attendance : attends
-    users ||--o{ student_progress : tracks
+    users ||--o{ studentTestResults : takes
+    users ||--o{ studentAttendance : attends
+    users ||--o{ studentProgress : tracks
     
     %% Teacher Entities
-    users ||--o| teacher_profiles : is
-    users ||--o{ teacher_stats : has
-    users ||--o{ teacher_reviews : receives
-    users ||--o{ teacher_evaluations : receives
+    users ||--o| teacherProfiles : is
+    users ||--o{ teacherStats : has
+    users ||--o{ teacherReviews : receives
+    users ||--o{ teacherEvaluations : receives
     
     %% Class Relationships
-    classes ||--o{ class_teachers : has
-    classes ||--o{ class_students : has
-    classes ||--o{ class_schedules : has
-    classes ||--o{ class_sessions : has
-    classes ||--o{ class_assignments : has
+    classes ||--o{ classTeachers : has
+    classes ||--o{ classStudents : has
+    classes ||--o{ classSchedules : has
+    classes ||--o{ classSessions : has
+    classes ||--o{ classAssignments : has
     
-    users ||--o{ class_teachers : teaches
-    users ||--o{ class_students : studies
+    users ||--o{ classTeachers : teaches
+    users ||--o{ classStudents : studies
     
-    class_sessions ||--o{ session_attendance : has
-    users ||--o{ session_attendance : records
+    classSessions ||--o{ sessionAttendance : has
+    users ||--o{ sessionAttendance : records
     
     %% Content Relationships
-    courses ||--o{ course_modules : contains
-    course_modules ||--o{ lessons : contains
+    courses ||--o{ courseModules : contains
+    courseModules ||--o{ lessons : contains
     users ||--o{ courses : creates
     
     users ||--o{ materials : uploads
     
     courses ||--o{ enrollments : enrolls_in
-    courses ||--o{ student_progress : tracks
-    lessons ||--o{ lesson_progress : tracks
+    courses ||--o{ studentProgress : tracks
+    lessons ||--o{ lessonProgress : tracks
     
     %% Exam Relationships
     users ||--o{ questions : authors
-    exams ||--o{ exam_sections : contains
-    exam_sections ||--o{ exam_questions : contains
-    questions ||--o{ exam_questions : used_in
+    exams ||--o{ examSections : contains
+    examSections ||--o{ examQuestions : contains
+    questions ||--o{ examQuestions : used_in
     
     classes ||--o{ assignments : assigns
     exams ||--o{ assignments : uses
     
     assignments ||--o{ submissions : receives
     users ||--o{ submissions : submits
-    submissions ||--o{ ai_grading_logs : logs
+    submissions ||--o{ aiGradingLogs : logs
     
     %% Notification Relationships
     users ||--o{ notifications : receives
-    users ||--o| notification_preferences : has
-    users ||--o{ push_subscriptions : subscribes
+    users ||--o| notificationPreferences : has
+    users ||--o{ pushSubscriptions : subscribes
     
     %% Gamification
-    users ||--o{ user_badges : earns
-    badges ||--o{ user_badges : awarded
+    users ||--o{ userBadges : earns
+    badges ||--o{ userBadges : awarded
     users ||--o{ goals : sets
 ```
 
@@ -229,13 +229,13 @@ CREATE TABLE users (
   bio TEXT,
   role VARCHAR(20) NOT NULL DEFAULT 'Student',
   status VARCHAR(20) NOT NULL DEFAULT 'active',
-  email_verified BOOLEAN DEFAULT FALSE,
-  email_verified_at TIMESTAMP,
-  last_login_at TIMESTAMP,
-  last_login_ip VARCHAR(45),
-  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  deleted_at TIMESTAMP
+  emailVerified BOOLEAN DEFAULT FALSE,
+  emailVerifiedAt TIMESTAMP,
+  lastLoginAt TIMESTAMP,
+  lastLoginIp VARCHAR(45),
+  createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+  updatedAt TIMESTAMP NOT NULL DEFAULT NOW(),
+  deletedAt TIMESTAMP
 );
 
 CREATE INDEX idx_users_email ON users(email);
@@ -243,24 +243,24 @@ CREATE INDEX idx_users_role ON users(role);
 CREATE INDEX idx_users_status ON users(status);
 ```
 
-#### user_profiles
+#### userProfiles
 ```sql
-CREATE TABLE user_profiles (
+CREATE TABLE userProfiles (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE UNIQUE,
-  date_of_birth DATE,
+  userId UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE UNIQUE,
+  dateOfBirth DATE,
   gender VARCHAR(10),
   address TEXT,
   city VARCHAR(100),
   country VARCHAR(100) DEFAULT 'Vietnam',
   language VARCHAR(10) DEFAULT 'vi',
   timezone VARCHAR(50) DEFAULT 'Asia/Ho_Chi_Minh',
-  notification_email BOOLEAN DEFAULT TRUE,
-  notification_push BOOLEAN DEFAULT TRUE,
-  facebook_url VARCHAR(255),
-  linkedin_url VARCHAR(255),
-  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+  notificationEmail BOOLEAN DEFAULT TRUE,
+  notificationPush BOOLEAN DEFAULT TRUE,
+  facebookUrl VARCHAR(255),
+  linkedinUrl VARCHAR(255),
+  createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+  updatedAt TIMESTAMP NOT NULL DEFAULT NOW()
 );
 ```
 
@@ -285,147 +285,147 @@ Table users {
   bio text
   role varchar(20) [not null, default: 'Student', note: 'Student, Teacher, Admin']
   status varchar(20) [not null, default: 'active', note: 'active, inactive, banned, deleted']
-  email_verified boolean [default: false]
-  email_verified_at timestamp
-  last_login_at timestamp
-  last_login_ip varchar(45)
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
-  deleted_at timestamp
+  emailVerified boolean [default: false]
+  emailVerifiedAt timestamp
+  lastLoginAt timestamp
+  lastLoginIp varchar(45)
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
+  deletedAt timestamp
   
   indexes {
     email
     role
     status
-    created_at
+    createdAt
   }
 }
 
-Table user_profiles {
+Table userProfiles {
   id uuid [pk]
-  user_id uuid [ref: - users.id, unique, not null]
-  date_of_birth date
+  userId uuid [ref: - users.id, unique, not null]
+  dateOfBirth date
   gender varchar(10)
   address text
   city varchar(100)
   country varchar(100) [default: 'Vietnam']
   language varchar(10) [default: 'vi']
   timezone varchar(50) [default: 'Asia/Ho_Chi_Minh']
-  notification_email boolean [default: true]
-  notification_push boolean [default: true]
-  facebook_url varchar(255)
-  linkedin_url varchar(255)
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  notificationEmail boolean [default: true]
+  notificationPush boolean [default: true]
+  facebookUrl varchar(255)
+  linkedinUrl varchar(255)
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
 }
 
 Table roles {
   id uuid [pk]
   name varchar(50) [not null, unique, note: 'Student, Teacher, Admin']
-  display_name varchar(100) [not null]
+  displayName varchar(100) [not null]
   description text
   permissions jsonb
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
 }
 
 Table permissions {
   id uuid [pk]
   name varchar(100) [not null, unique, note: 'practice.access, user.create']
-  display_name varchar(100) [not null]
+  displayName varchar(100) [not null]
   description text
   module varchar(50) [note: 'practice, user, exam']
-  created_at timestamp [not null, default: `now()`]
+  createdAt timestamp [not null, default: `now()`]
 }
 
 // ===== STUDENT TABLES =====
 
-Table student_profiles {
+Table studentProfiles {
   id uuid [pk]
-  user_id uuid [ref: - users.id, unique, not null]
-  student_code varchar(50) [unique, note: 'SV-2024-00123']
-  enrollment_date date [not null, default: `current_date`]
-  graduation_date date
-  current_level varchar(5) [default: 'A2']
-  target_level varchar(5) [default: 'B2']
+  userId uuid [ref: - users.id, unique, not null]
+  studentCode varchar(50) [unique, note: 'SV-2024-00123']
+  enrollmentDate date [not null, default: `current_date`]
+  graduationDate date
+  currentLevel varchar(5) [default: 'A2']
+  targetLevel varchar(5) [default: 'B2']
   education varchar(200)
   major varchar(100)
   occupation varchar(100)
   purpose text
-  emergency_contact_name varchar(100)
-  emergency_contact_phone varchar(20)
-  preferred_learning_time varchar(50)
-  learning_style varchar(50)
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  emergencyContactName varchar(100)
+  emergencyContactPhone varchar(20)
+  preferredLearningTime varchar(50)
+  learningStyle varchar(50)
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
 }
 
-Table student_test_results {
+Table studentTestResults {
   id uuid [pk]
-  student_id uuid [ref: > users.id, not null]
-  test_id uuid
-  test_type varchar(20) [not null, note: 'reading, listening, writing, speaking']
-  test_mode varchar(20) [not null, note: 'practice, exam, mock_exam']
+  studentId uuid [ref: > users.id, not null]
+  testId uuid
+  testType varchar(20) [not null, note: 'reading, listening, writing, speaking']
+  testMode varchar(20) [not null, note: 'practice, exam, mock_exam']
   level varchar(5)
   score decimal(3,1) [not null]
-  total_questions integer
-  correct_answers integer
+  totalQuestions integer
+  correctAnswers integer
   percentage decimal(5,2)
-  time_taken integer [note: 'in seconds']
-  started_at timestamp [not null]
-  submitted_at timestamp [not null]
-  class_id uuid [ref: > classes.id]
-  assignment_id uuid
+  timeTaken integer [note: 'in seconds']
+  startedAt timestamp [not null]
+  submittedAt timestamp [not null]
+  classId uuid [ref: > classes.id]
+  assignmentId uuid
   status varchar(20) [default: 'completed']
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
   
   indexes {
-    student_id
-    test_type
+    studentId
+    testType
     level
-    submitted_at
+    submittedAt
   }
 }
 
 // ===== TEACHER TABLES =====
 
-Table teacher_profiles {
+Table teacherProfiles {
   id uuid [pk]
-  user_id uuid [ref: - users.id, unique, not null]
-  teacher_code varchar(50) [unique, note: 'GV-2023-00045']
+  userId uuid [ref: - users.id, unique, not null]
+  teacherCode varchar(50) [unique, note: 'GV-2023-00045']
   title varchar(10) [note: 'TS., ThS., GV.']
-  joined_date date [not null, default: `current_date`]
-  employment_type varchar(20) [not null, default: 'full_time']
+  joinedDate date [not null, default: `current_date`]
+  employmentType varchar(20) [not null, default: 'full_time']
   status varchar(20) [default: 'active']
   education jsonb
   certifications jsonb
   experience integer [default: 0]
   specialties jsonb
-  levels_taught jsonb
+  levelsTaught jsonb
   bio text
   achievements jsonb
   publications jsonb
-  linkedin_url varchar(255)
-  website_url varchar(255)
-  max_hours_per_week integer [default: 40]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  linkedinUrl varchar(255)
+  websiteUrl varchar(255)
+  maxHoursPerWeek integer [default: 40]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
 }
 
-Table teacher_stats {
+Table teacherStats {
   id uuid [pk]
-  teacher_id uuid [ref: - users.id, unique, not null]
-  current_classes integer [default: 0]
-  total_classes integer [default: 0]
-  current_students integer [default: 0]
-  total_students_taught integer [default: 0]
-  courses_created integer [default: 0]
-  average_rating decimal(2,1) [default: 0]
-  total_reviews integer [default: 0]
-  student_pass_rate decimal(5,2) [default: 0]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  teacherId uuid [ref: - users.id, unique, not null]
+  currentClasses integer [default: 0]
+  totalClasses integer [default: 0]
+  currentStudents integer [default: 0]
+  totalStudentsTaught integer [default: 0]
+  coursesCreated integer [default: 0]
+  averageRating decimal(2,1) [default: 0]
+  totalReviews integer [default: 0]
+  studentPassRate decimal(5,2) [default: 0]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
 }
 
 // ===== CLASS TABLES =====
@@ -436,66 +436,66 @@ Table classes {
   name varchar(200) [not null]
   description text
   level varchar(5) [not null, note: 'A2, B1, B2, C1']
-  max_students integer [not null, default: 30]
-  min_students integer [default: 5]
+  maxStudents integer [not null, default: 30]
+  minStudents integer [default: 5]
   enrolled integer [default: 0]
-  start_date date [not null]
-  end_date date [not null]
-  duration_weeks integer
+  startDate date [not null]
+  endDate date [not null]
+  durationWeeks integer
   status varchar(20) [not null, default: 'upcoming']
-  is_public boolean [default: true]
-  require_approval boolean [default: false]
+  isPublic boolean [default: true]
+  requireApproval boolean [default: false]
   thumbnail varchar(500)
-  syllabus_url varchar(500)
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
-  archived_at timestamp
+  syllabusUrl varchar(500)
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
+  archivedAt timestamp
   
   indexes {
     code
     level
     status
-    start_date
+    startDate
   }
 }
 
-Table class_teachers {
+Table classTeachers {
   id uuid [pk]
-  class_id uuid [ref: > classes.id, not null]
-  teacher_id uuid [ref: > users.id, not null]
+  classId uuid [ref: > classes.id, not null]
+  teacherId uuid [ref: > users.id, not null]
   role varchar(20) [not null, default: 'primary', note: 'primary, assistant, substitute']
-  assigned_at timestamp [not null, default: `now()`]
-  removed_at timestamp
-  is_active boolean [default: true]
-  created_at timestamp [not null, default: `now()`]
+  assignedAt timestamp [not null, default: `now()`]
+  removedAt timestamp
+  isActive boolean [default: true]
+  createdAt timestamp [not null, default: `now()`]
   
   indexes {
-    class_id
-    teacher_id
-    (class_id, teacher_id, role) [unique]
+    classId
+    teacherId
+    (classId, teacherId, role) [unique]
   }
 }
 
-Table class_students {
+Table classStudents {
   id uuid [pk]
-  class_id uuid [ref: > classes.id, not null]
-  student_id uuid [ref: > users.id, not null]
-  joined_at timestamp [not null, default: `now()`]
-  enrollment_method varchar(50)
+  classId uuid [ref: > classes.id, not null]
+  studentId uuid [ref: > users.id, not null]
+  joinedAt timestamp [not null, default: `now()`]
+  enrollmentMethod varchar(50)
   status varchar(20) [not null, default: 'active']
   progress decimal(5,2) [default: 0]
-  attended_sessions integer [default: 0]
-  total_sessions integer [default: 0]
-  attendance_rate decimal(5,2) [default: 0]
-  average_score decimal(3,1) [default: 0]
-  removed_at timestamp
-  completed_at timestamp
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  attendedSessions integer [default: 0]
+  totalSessions integer [default: 0]
+  attendanceRate decimal(5,2) [default: 0]
+  averageScore decimal(3,1) [default: 0]
+  removedAt timestamp
+  completedAt timestamp
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
   
   indexes {
-    class_id
-    student_id
+    classId
+    studentId
     status
   }
 }
@@ -510,67 +510,67 @@ Table courses {
   level varchar(5) [not null]
   skills jsonb
   thumbnail varchar(500)
-  total_modules integer [default: 0]
-  total_lessons integer [default: 0]
-  total_duration integer [default: 0]
-  created_by uuid [ref: > users.id, not null]
+  totalModules integer [default: 0]
+  totalLessons integer [default: 0]
+  totalDuration integer [default: 0]
+  createdBy uuid [ref: > users.id, not null]
   status varchar(20) [default: 'draft']
-  published_at timestamp
+  publishedAt timestamp
   price decimal(10,2) [default: 0]
-  is_free boolean [default: true]
-  enrolled_count integer [default: 0]
-  average_rating decimal(2,1) [default: 0]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  isFree boolean [default: true]
+  enrolledCount integer [default: 0]
+  averageRating decimal(2,1) [default: 0]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
   
   indexes {
     slug
     level
     status
-    created_by
+    createdBy
   }
 }
 
-Table course_modules {
+Table courseModules {
   id uuid [pk]
-  course_id uuid [ref: > courses.id, not null]
+  courseId uuid [ref: > courses.id, not null]
   title varchar(200) [not null]
   description text
-  order_number integer [not null]
-  total_lessons integer [default: 0]
+  orderNumber integer [not null]
+  totalLessons integer [default: 0]
   duration integer [default: 0]
-  is_locked boolean [default: false]
-  unlock_after_module uuid [ref: > course_modules.id]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  isLocked boolean [default: false]
+  unlockAfterModule uuid [ref: > courseModules.id]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
   
   indexes {
-    course_id
-    (course_id, order_number) [unique]
+    courseId
+    (courseId, orderNumber) [unique]
   }
 }
 
 Table lessons {
   id uuid [pk]
-  module_id uuid [ref: > course_modules.id, not null]
+  moduleId uuid [ref: > courseModules.id, not null]
   title varchar(200) [not null]
   description text
-  order_number integer [not null]
-  content_type varchar(20) [not null, note: 'video, text, quiz, exercise']
-  video_url varchar(500)
-  video_duration integer
-  text_content text
+  orderNumber integer [not null]
+  contentType varchar(20) [not null, note: 'video, text, quiz, exercise']
+  videoUrl varchar(500)
+  videoDuration integer
+  textContent text
   questions jsonb
   attachments jsonb
-  is_preview boolean [default: false]
-  is_required boolean [default: true]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  isPreview boolean [default: false]
+  isRequired boolean [default: true]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
   
   indexes {
-    module_id
-    content_type
-    (module_id, order_number) [unique]
+    moduleId
+    contentType
+    (moduleId, orderNumber) [unique]
   }
 }
 
@@ -579,28 +579,28 @@ Table lessons {
 Table questions {
   id uuid [pk]
   skill varchar(20) [not null, note: 'reading, listening, writing, speaking']
-  question_type varchar(50) [not null]
-  question_text text
-  passage_id uuid [ref: > passages.id]
-  audio_url varchar(500)
+  questionType varchar(50) [not null]
+  questionText text
+  passageId uuid [ref: > passages.id]
+  audioUrl varchar(500)
   options jsonb
-  correct_answer text
-  correct_answers jsonb
+  correctAnswer text
+  correctAnswers jsonb
   points decimal(4,1) [default: 1]
   difficulty varchar(20) [default: 'medium']
   explanation text
   tags jsonb
-  times_used integer [default: 0]
-  created_by uuid [ref: > users.id, not null]
+  timesUsed integer [default: 0]
+  createdBy uuid [ref: > users.id, not null]
   status varchar(20) [default: 'active']
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
   
   indexes {
     skill
-    question_type
+    questionType
     difficulty
-    created_by
+    createdBy
   }
 }
 
@@ -609,22 +609,22 @@ Table exams {
   title varchar(200) [not null]
   code varchar(50) [unique]
   description text
-  exam_type varchar(20) [not null, default: 'practice']
+  examType varchar(20) [not null, default: 'practice']
   level varchar(5) [not null]
   skills jsonb
-  total_questions integer [default: 0]
-  total_points decimal(6,1) [default: 0]
-  passing_score decimal(6,1)
-  total_duration integer
+  totalQuestions integer [default: 0]
+  totalPoints decimal(6,1) [default: 0]
+  passingScore decimal(6,1)
+  totalDuration integer
   status varchar(20) [default: 'draft']
-  created_by uuid [ref: > users.id, not null]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
-  published_at timestamp
+  createdBy uuid [ref: > users.id, not null]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
+  publishedAt timestamp
   
   indexes {
     code
-    exam_type
+    examType
     level
     status
   }
@@ -634,52 +634,52 @@ Table assignments {
   id uuid [pk]
   title varchar(200) [not null]
   description text
-  assignment_type varchar(20) [default: 'homework']
-  exam_id uuid [ref: > exams.id]
-  class_id uuid [ref: > classes.id]
-  assigned_date timestamp [not null, default: `now()`]
-  due_date timestamp [not null]
-  total_points decimal(6,1)
-  passing_score decimal(6,1)
-  grading_method varchar(20) [default: 'auto']
+  assignmentType varchar(20) [default: 'homework']
+  examId uuid [ref: > exams.id]
+  classId uuid [ref: > classes.id]
+  assignedDate timestamp [not null, default: `now()`]
+  dueDate timestamp [not null]
+  totalPoints decimal(6,1)
+  passingScore decimal(6,1)
+  gradingMethod varchar(20) [default: 'auto']
   status varchar(20) [default: 'assigned']
-  created_by uuid [ref: > users.id, not null]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  createdBy uuid [ref: > users.id, not null]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
   
   indexes {
-    class_id
-    exam_id
+    classId
+    examId
     status
-    due_date
+    dueDate
   }
 }
 
 Table submissions {
   id uuid [pk]
-  assignment_id uuid [ref: > assignments.id]
-  exam_id uuid [ref: > exams.id, not null]
-  student_id uuid [ref: > users.id, not null]
-  attempt_number integer [default: 1]
+  assignmentId uuid [ref: > assignments.id]
+  examId uuid [ref: > exams.id, not null]
+  studentId uuid [ref: > users.id, not null]
+  attemptNumber integer [default: 1]
   answers jsonb [not null]
-  started_at timestamp [not null]
-  submitted_at timestamp
-  time_spent integer
+  startedAt timestamp [not null]
+  submittedAt timestamp
+  timeSpent integer
   status varchar(20) [default: 'in_progress']
-  auto_score decimal(6,2)
-  graded_score decimal(6,2)
-  final_score decimal(6,2)
+  autoScore decimal(6,2)
+  gradedScore decimal(6,2)
+  finalScore decimal(6,2)
   percentage decimal(5,2)
   passed boolean
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
   
   indexes {
-    assignment_id
-    exam_id
-    student_id
+    assignmentId
+    examId
+    studentId
     status
-    (assignment_id, student_id, attempt_number) [unique]
+    (assignmentId, studentId, attemptNumber) [unique]
   }
 }
 
@@ -687,84 +687,84 @@ Table submissions {
 
 Table notifications {
   id uuid [pk]
-  user_id uuid [ref: > users.id, not null]
+  userId uuid [ref: > users.id, not null]
   type varchar(50) [not null]
   category varchar(20) [not null]
   title varchar(200) [not null]
   message text [not null]
-  action_url varchar(500)
+  actionUrl varchar(500)
   data jsonb
-  is_read boolean [default: false]
-  read_at timestamp
-  created_at timestamp [not null, default: `now()`]
+  isRead boolean [default: false]
+  readAt timestamp
+  createdAt timestamp [not null, default: `now()`]
   
   indexes {
-    user_id
+    userId
     type
     category
-    is_read
-    created_at
+    isRead
+    createdAt
   }
 }
 
 // ===== ANALYTICS TABLES =====
 
-Table analytics_events {
+Table analyticsEvents {
   id uuid [pk]
-  user_id uuid [ref: > users.id]
-  session_id uuid
-  event_type varchar(50) [not null]
-  event_name varchar(100)
+  userId uuid [ref: > users.id]
+  sessionId uuid
+  eventType varchar(50) [not null]
+  eventName varchar(100)
   properties jsonb
-  ip_address varchar(45)
-  device_type varchar(20)
-  created_at timestamp [not null, default: `now()`]
+  ipAddress varchar(45)
+  deviceType varchar(20)
+  createdAt timestamp [not null, default: `now()`]
   
   indexes {
-    user_id
-    event_type
-    created_at
+    userId
+    eventType
+    createdAt
   }
 }
 
-Table daily_stats {
+Table dailyStats {
   id uuid [pk]
   date date [not null, unique]
-  total_users integer [default: 0]
-  new_users integer [default: 0]
-  active_users integer [default: 0]
-  tests_taken integer [default: 0]
-  average_score decimal(3,1)
+  totalUsers integer [default: 0]
+  newUsers integer [default: 0]
+  activeUsers integer [default: 0]
+  testsTaken integer [default: 0]
+  averageScore decimal(3,1)
   revenue decimal(10,2) [default: 0]
-  created_at timestamp [not null, default: `now()`]
-  updated_at timestamp [not null, default: `now()`]
+  createdAt timestamp [not null, default: `now()`]
+  updatedAt timestamp [not null, default: `now()`]
 }
 
 // ===== RELATIONSHIPS SUMMARY =====
 
 // One-to-One
-Ref: users.id - user_profiles.user_id
-Ref: users.id - student_profiles.user_id
-Ref: users.id - teacher_profiles.user_id
-Ref: users.id - teacher_stats.teacher_id
+Ref: users.id - userProfiles.userId
+Ref: users.id - studentProfiles.userId
+Ref: users.id - teacherProfiles.userId
+Ref: users.id - teacherStats.teacherId
 
 // One-to-Many
-Ref: users.id < student_test_results.student_id
-Ref: users.id < notifications.user_id
-Ref: users.id < courses.created_by
-Ref: courses.id < course_modules.course_id
-Ref: course_modules.id < lessons.module_id
-Ref: classes.id < class_students.class_id
-Ref: classes.id < class_teachers.class_id
-Ref: users.id < class_students.student_id
-Ref: users.id < class_teachers.teacher_id
-Ref: exams.id < assignments.exam_id
-Ref: assignments.id < submissions.assignment_id
+Ref: users.id < studentTestResults.studentId
+Ref: users.id < notifications.userId
+Ref: users.id < courses.createdBy
+Ref: courses.id < courseModules.courseId
+Ref: courseModules.id < lessons.moduleId
+Ref: classes.id < classStudents.classId
+Ref: classes.id < classTeachers.classId
+Ref: users.id < classStudents.studentId
+Ref: users.id < classTeachers.teacherId
+Ref: exams.id < assignments.examId
+Ref: assignments.id < submissions.assignmentId
 
 // Many-to-Many (through junction tables)
-// users <-> classes through class_students
-// users <-> classes through class_teachers
-// questions <-> exams through exam_questions
+// users <-> classes through classStudents
+// users <-> classes through classTeachers
+// questions <-> exams through examQuestions
 ```
 
 ---
@@ -781,10 +781,10 @@ id UUID PRIMARY KEY DEFAULT gen_random_uuid()
 Sử dụng ON DELETE CASCADE hoặc SET NULL tùy business logic:
 ```sql
 -- CASCADE: Xóa child khi xóa parent
-user_id UUID REFERENCES users(id) ON DELETE CASCADE
+userId UUID REFERENCES users(id) ON DELETE CASCADE
 
 -- SET NULL: Set NULL khi xóa parent
-created_by UUID REFERENCES users(id) ON DELETE SET NULL
+createdBy UUID REFERENCES users(id) ON DELETE SET NULL
 ```
 
 ### Unique Constraints
@@ -793,14 +793,14 @@ created_by UUID REFERENCES users(id) ON DELETE SET NULL
 email VARCHAR(255) UNIQUE
 
 -- Multiple columns (composite unique)
-UNIQUE (class_id, student_id, removed_at)
+UNIQUE (classId, studentId, removedAt)
 ```
 
 ### Check Constraints
 ```sql
 -- Validate values
-CHECK (end_date > start_date)
-CHECK (enrolled <= max_students)
+CHECK (endDate > startDate)
+CHECK (enrolled <= maxStudents)
 CHECK (score >= 0 AND score <= 10)
 ```
 
@@ -812,14 +812,14 @@ CREATE INDEX idx_users_role ON users(role);
 
 -- Composite indexes
 CREATE INDEX idx_submissions_assignment_student 
-  ON submissions(assignment_id, student_id);
+  ON submissions(assignmentId, studentId);
 
 -- JSONB indexes (GIN)
 CREATE INDEX idx_questions_tags ON questions USING GIN (tags);
 
 -- Partial indexes
 CREATE INDEX idx_active_users 
-  ON users(created_at) WHERE deleted_at IS NULL;
+  ON users(createdAt) WHERE deletedAt IS NULL;
 ```
 
 ---

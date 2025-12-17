@@ -41,7 +41,7 @@
 
 **Tables**: `snake_case` (e.g., `user_profiles`, `exercise_submissions`)
 
-**Columns**: `snake_case` (e.g., `created_at`, `full_name`)
+**Columns**: `camelCase` (e.g., `createdAt`, `fullName`)
 
 **Indexes**: `idx_{table}_{column}` (e.g., `idx_users_email`)
 
