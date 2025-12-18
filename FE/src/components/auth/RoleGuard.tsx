@@ -39,9 +39,11 @@ export default function RoleGuard({
       return;
     }
 
-    // Check if user has required role
-    const userRole = user.role?.name as Role;
-    const hasRequiredRole = allowedRoles.includes(userRole);
+    // Check if user has required role with proper type validation
+    const userRole = user.role?.name;
+    const validRoles: Role[] = ['student', 'teacher', 'admin'];
+    const isValidRole = userRole && validRoles.includes(userRole as Role);
+    const hasRequiredRole = isValidRole && allowedRoles.includes(userRole as Role);
     
     setHasAccess(hasRequiredRole);
 

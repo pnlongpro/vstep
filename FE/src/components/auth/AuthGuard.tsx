@@ -26,6 +26,12 @@ export default function AuthGuard({
 
   useEffect(() => {
     const verifyAuth = async () => {
+      // Skip if already authenticated and initialized
+      if (isAuthenticated && isInitialized) {
+        setIsChecking(false);
+        return;
+      }
+      
       // If tokens exist, verify them
       if (tokenUtils.hasValidTokens()) {
         await checkAuth();
@@ -34,7 +40,7 @@ export default function AuthGuard({
     };
 
     verifyAuth();
-  }, [checkAuth]);
+  }, [checkAuth, isAuthenticated, isInitialized]);
 
   useEffect(() => {
     if (!isChecking && isInitialized && !isAuthenticated) {
