@@ -13,12 +13,13 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { RolesGuard } from './guards/roles.guard';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
+import { AppConfigService } from './config/app-config.service';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
+      envFilePath: ['.env', '.env.development'],
     }),
     DatabaseModule,
     LoggerModule,
@@ -32,6 +33,7 @@ import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
   ],
   controllers: [],
   providers: [
+    AppConfigService,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
