@@ -1,13 +1,10 @@
 import { Injectable, NotFoundException, BadRequestException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, In } from 'typeorm';
-import { PracticeSession } from './entities/practice-session.entity';
-import { PracticeAnswer } from './entities/practice-answer.entity';
-import { Question } from '../questions/entities/question.entity';
-import { CreateSessionDto } from './dto/create-session.dto';
-import { SubmitAnswerDto } from './dto/submit-answer.dto';
-import { UpdateSessionDto } from './dto/update-session.dto';
-import { SessionStatus, PracticeMode } from '../../shared/enums/practice.enum';
+import { PracticeAnswer, PracticeSession } from '../entities';
+import { Question } from '@/modules/questions/entities';
+import { PracticeMode, SessionStatus } from '@/shared/enums';
+import { CreateSessionDto, SubmitAnswerDto, UpdateSessionDto } from '../dto';
 
 @Injectable()
 export class PracticeSessionService {
