@@ -1,0 +1,14 @@
+Đây là nội dung hoàn chỉnh cho mục Tự động hóa. Vui lòng thay thế từ dòng 1421 đến dòng 1558 trong file FreeAccountManagementPage.tsx với nội dung đã được hoàn thiện chi tiết sau:
+
+✅ **Đã thêm:**
+1. Performance Overview với 4 metrics (Email sent, Open Rate, Click Rate, Conversion)
+2. Analytics chi tiết cho từng kịch bản (sent, open, click)
+3. Buttons (Sửa, Preview, Stats) cho mỗi campaign
+4. Thêm kịch bản mới: "Ngày 21 - Tái kích hoạt", "Click vào locked feature"
+5. Email Templates section với 6 templates
+6. Kênh gửi thông báo có statistics (open rate, sent count)
+7. Lịch sử gửi gần đây với 5 logs
+8. A/B Testing section với campaigns đang chạy
+9. Action buttons (Xuất báo cáo, Lưu cấu hình)
+
+Nội dung đã được hoàn thiện theo đúng design system và tối ưu UX.

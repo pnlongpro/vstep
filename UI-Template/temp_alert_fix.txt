@@ -1,0 +1,1 @@
+alert(`✅ Đã tự động tạo lịch cho ${classInfo.totalSessions} buổi học!\n\n📅 Từ: ${formatDateVN(dates[0])}\n📅 Đến: ${formatDateVN(dates[classInfo.totalSessions - 1])}\n📚 Tổng: ~${classInfo.totalAssignments} bài tập (2-3 bài/buổi)\n📖 Khóa học: ${classInfo.course}\n\nMỗi buổi gồm Reading + Listening + Writing/Speaking luân phiên.`);

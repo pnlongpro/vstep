@@ -1,0 +1,509 @@
+{
+  "common": {
+    "loading": "Đang tải...",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "add": "Thêm",
+    "close": "Đóng",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "refresh": "Làm mới",
+    "export": "Xuất",
+    "import": "Nhập",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "previous": "Trước",
+    "submit": "Gửi",
+    "reset": "Đặt lại",
+    "view": "Xem",
+    "download": "Tải xuống",
+    "upload": "Tải lên",
+    "yes": "Có",
+    "no": "Không",
+    "all": "Tất cả",
+    "none": "Không có",
+    "success": "Thành công",
+    "error": "Lỗi",
+    "warning": "Cảnh báo",
+    "info": "Thông tin"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "register": "Đăng ký",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "forgotPassword": "Quên mật khẩu?",
+    "resetPassword": "Đặt lại mật khẩu",
+    "rememberMe": "Ghi nhớ đăng nhập",
+    "orContinueWith": "Hoặc tiếp tục với",
+    "noAccount": "Chưa có tài khoản?",
+    "hasAccount": "Đã có tài khoản?",
+    "firstName": "Họ",
+    "lastName": "Tên",
+    "phone": "Số điện thoại"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "dashboard": "Bảng điều khiển",
+    "practice": "Luyện tập",
+    "exam": "Thi thử",
+    "history": "Lịch sử",
+    "profile": "Hồ sơ",
+    "settings": "Cài đặt",
+    "help": "Trợ giúp",
+    "admin": "Quản trị"
+  },
+  "skills": {
+    "reading": "Đọc",
+    "listening": "Nghe",
+    "writing": "Viết",
+    "speaking": "Nói"
+  },
+  "levels": {
+    "a1": "A1 - Sơ cấp",
+    "a2": "A2 - Tiền trung cấp",
+    "b1": "B1 - Trung cấp",
+    "b2": "B2 - Trung cấp cao",
+    "c1": "C1 - Cao cấp"
+  },
+  "admin": {
+    "users": {
+      "title": "Quản lý người dùng",
+      "addUser": "Thêm người dùng",
+      "editUser": "Sửa người dùng",
+      "deleteUser": "Xóa người dùng",
+      "deleteConfirm": "Bạn có chắc chắn muốn xóa người dùng này?",
+      "resetLogin": "Reset đăng nhập",
+      "resetLoginConfirm": "Điều này sẽ đăng xuất người dùng khỏi tất cả thiết bị. Bạn có chắc chắn?",
+      "manageExpiry": "Quản lý hạn tài khoản",
+      "manageDevices": "Quản lý thiết bị",
+      "status": {
+        "active": "Hoạt động",
+        "inactive": "Tạm ngưng",
+        "suspended": "Đã cấm",
+        "pending": "Chờ duyệt"
+      },
+      "roles": {
+        "admin": "Quản trị",
+        "teacher": "Giáo viên",
+        "student": "Học viên",
+        "uploader": "Uploader"
+      },
+      "stats": {
+        "total": "Tổng người dùng",
+        "active": "Đang hoạt động",
+        "newThisWeek": "Mới trong tuần",
+        "premium": "Premium"
+      },
+      "deviceLimit": {
+        "title": "Quản lý thiết bị đăng nhập",
+        "maxDevices": "Giới hạn số thiết bị",
+        "currentDevices": "thiết bị đang đăng nhập",
+        "logoutDevice": "Đăng xuất thiết bị",
+        "logoutAll": "Đăng xuất tất cả",
+        "overLimit": "Vượt quá giới hạn!",
+        "atLimit": "Đã đạt giới hạn tối đa",
+        "slotsRemaining": "Còn {count} slot trống"
+      },
+      "expiry": {
+        "title": "Quản lý hạn tài khoản",
+        "currentExpiry": "Hạn hiện tại",
+        "daysRemaining": "Còn {days} ngày",
+        "extend": "Gia hạn thêm",
+        "setDate": "Đặt ngày cụ thể",
+        "noExpiry": "Chưa có gói"
+      }
+    },
+    "teachers": {
+      "title": "Quản lý giáo viên",
+      "addTeacher": "Thêm giáo viên",
+      "editTeacher": "Chỉnh sửa giáo viên",
+      "editDescription": "Cập nhật thông tin giáo viên {name}",
+      "searchPlaceholder": "Tìm kiếm theo tên, email hoặc chuyên môn...",
+      "noTeachersFound": "Không tìm thấy giáo viên nào",
+      "selectedCount": "{count} giáo viên được chọn",
+      "showingRange": "Hiển thị {from} đến {to} trong tổng số {total} giáo viên",
+      "updateSuccess": "Cập nhật thông tin giáo viên thành công",
+      "columns": {
+        "teacher": "Giáo viên",
+        "specialty": "Chuyên môn",
+        "courses": "Khóa học",
+        "students": "Học viên",
+        "rating": "Đánh giá",
+        "status": "Trạng thái",
+        "joined": "Tham gia",
+        "actions": "Hành động"
+      },
+      "stats": {
+        "totalTeachers": "Tổng giáo viên",
+        "activeTeachers": "Đang hoạt động",
+        "totalCourses": "Khóa học đã tạo",
+        "totalStudents": "Học viên được dạy"
+      },
+      "form": {
+        "firstName": "Họ và tên đệm",
+        "lastName": "Tên",
+        "email": "Email",
+        "phone": "Số điện thoại",
+        "degree": "Chức danh",
+        "specialization": "Chuyên môn",
+        "status": "Trạng thái",
+        "bio": "Mô tả / Tiểu sử",
+        "bioPlaceholder": "Mô tả ngắn về giáo viên, kinh nghiệm, chuyên môn...",
+        "required": "*"
+      },
+      "degrees": {
+        "teacher": "Giáo viên",
+        "master": "Thạc sĩ",
+        "doctor": "Tiến sĩ",
+        "professor": "Giáo sư",
+        "bachelor": "Cử nhân"
+      },
+      "specializations": {
+        "writing": "Writing",
+        "speaking": "Speaking",
+        "reading": "Reading",
+        "listening": "Listening",
+        "grammar": "Grammar",
+        "vocabulary": "Vocabulary",
+        "general": "General"
+      },
+      "status": {
+        "active": "Hoạt động",
+        "inactive": "Tạm ngưng",
+        "allStatus": "Tất cả trạng thái"
+      },
+      "actions": {
+        "edit": "Chỉnh sửa",
+        "sendEmail": "Gửi email",
+        "viewClasses": "Xem lớp học",
+        "createAssignment": "Giao bài tập",
+        "activate": "Kích hoạt",
+        "deactivate": "Vô hiệu hóa",
+        "exportFile": "Xuất file",
+        "update": "Cập nhật"
+      }
+    },
+    "courses": {
+      "title": "Quản lý khóa học",
+      "subtitle": "Quản lý tất cả khóa học trong hệ thống",
+      "addCourse": "Thêm khóa học",
+      "editCourse": "Chỉnh sửa khóa học",
+      "searchPlaceholder": "Tìm kiếm theo tên khóa học, giảng viên...",
+      "noCourses": "Không tìm thấy khóa học",
+      "noCoursesDesc": "Không có khóa học nào phù hợp với bộ lọc",
+      "confirmDelete": "Bạn có chắc muốn xóa khóa học \"{title}\"?",
+      "deleteSuccess": "Xóa khóa học thành công",
+      "deleteError": "Xóa khóa học thất bại",
+      "createSuccess": "Tạo khóa học thành công",
+      "createError": "Tạo khóa học thất bại",
+      "updateSuccess": "Cập nhật khóa học thành công",
+      "updateError": "Cập nhật khóa học thất bại",
+      "fetchError": "Không thể tải danh sách khóa học",
+      "stats": {
+        "totalCourses": "Tổng khóa học",
+        "activeCourses": "Đang hoạt động",
+        "totalStudents": "Tổng học viên",
+        "revenue": "Doanh thu"
+      },
+      "status": {
+        "active": "Hoạt động",
+        "inactive": "Tạm ngưng",
+        "draft": "Bản nháp",
+        "allStatus": "Tất cả trạng thái"
+      },
+      "columns": {
+        "course": "Khóa học",
+        "category": "Danh mục",
+        "instructor": "Giảng viên",
+        "lessons": "Số bài",
+        "students": "Học viên",
+        "rating": "Đánh giá",
+        "revenue": "Doanh thu",
+        "status": "Trạng thái",
+        "actions": "Hành động"
+      },
+      "filter": {
+        "all": "Tất cả",
+        "allCategories": "Tất cả danh mục",
+        "allStatus": "Tất cả trạng thái",
+        "reset": "Đặt lại bộ lọc"
+      },
+      "tabs": {
+        "info": "Thông tin cơ bản",
+        "devices": "Thiết bị học",
+        "documents": "Tài liệu",
+        "roadmap": "Lộ trình",
+        "classes": "Lớp học"
+      },
+      "form": {
+        "title": "Tên khóa học",
+        "titlePlaceholder": "Nhập tên khóa học...",
+        "category": "Danh mục",
+        "selectCategory": "Chọn danh mục",
+        "instructor": "Giảng viên phụ trách",
+        "instructorPlaceholder": "Nhập tên giảng viên...",
+        "lessons": "Số bài học",
+        "duration": "Thời lượng",
+        "durationPlaceholder": "VD: 3 tháng",
+        "price": "Giá khóa học",
+        "pricePlaceholder": "VD: 2.500.000đ",
+        "status": "Trạng thái",
+        "description": "Mô tả khóa học",
+        "descriptionPlaceholder": "Mô tả chi tiết về khóa học, nội dung, đối tượng học..."
+      },
+      "devices": {
+        "title": "Giới hạn thiết bị",
+        "description": "Số thiết bị tối đa mà học viên có thể đăng nhập cùng lúc",
+        "presets": "Lựa chọn nhanh",
+        "devicesLabel": "thiết bị"
+      },
+      "documents": {
+        "title": "Danh sách tài liệu",
+        "description": "Quản lý tài liệu học tập cho khóa học này",
+        "upload": "Tải lên tài liệu",
+        "uploading": "Đang tải...",
+        "noDocuments": "Chưa có tài liệu nào",
+        "uploadFirst": "Tải lên tài liệu đầu tiên",
+        "downloads": "lượt tải"
+      },
+      "roadmap": {
+        "title": "Lộ trình học tập",
+        "description": "Sắp xếp các mốc học tập theo tuần",
+        "addItem": "Thêm mốc học tập",
+        "noItems": "Chưa có lộ trình học tập",
+        "addFirst": "Thêm mốc học tập đầu tiên",
+        "week": "Tuần",
+        "lessons": "Số bài",
+        "duration": "Thời lượng",
+        "status": "Trạng thái",
+        "statusLocked": "Khóa",
+        "statusInProgress": "Đang học",
+        "statusCompleted": "Hoàn thành"
+      },
+      "classes": {
+        "title": "Danh sách lớp học",
+        "description": "Quản lý các lớp học của khóa học này",
+        "addClass": "Thêm lớp học",
+        "noClasses": "Chưa có lớp học nào",
+        "addFirst": "Thêm lớp học đầu tiên",
+        "instructor": "GV",
+        "students": "Học viên",
+        "startDate": "Bắt đầu",
+        "statusActive": "Đang hoạt động",
+        "statusInactive": "Tạm ngưng"
+      },
+      "actions": {
+        "save": "Lưu thay đổi",
+        "create": "Tạo khóa học",
+        "cancel": "Hủy",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa",
+        "view": "Xem chi tiết"
+      },
+      "pagination": {
+        "showing": "Hiển thị {from} - {to} trong tổng số {total} khóa học"
+      }
+    },
+    "documents": {
+      "title": "Quản lý tài liệu",
+      "subtitle": "Quản lý tất cả tài liệu học tập trong hệ thống",
+      "pageTitle": "Quản lý thư viện tài liệu chung",
+      "pageDescription": "Quản lý tài liệu học tập và tài liệu lớp học - Tải lên, sửa, xóa, duyệt tài liệu",
+      "upload": "Tải lên tài liệu",
+      "uploadTitle": "Tải lên tài liệu mới",
+      "editTitle": "Chỉnh sửa tài liệu",
+      "detailTitle": "Chi tiết tài liệu",
+      "searchPlaceholder": "Tìm kiếm theo tên tài liệu, người tải...",
+      "noDocuments": "Không tìm thấy tài liệu",
+      "noDocumentsDesc": "Không tìm thấy tài liệu nào phù hợp với bộ lọc",
+      "noContributions": "Chưa có đóng góp nào từ giáo viên",
+      "addNew": "Thêm tài liệu mới",
+      "viewDetail": "Chi tiết tài liệu",
+      "found": "Tìm thấy",
+      "materials": "tài liệu",
+      "uploadedBy": "Tải lên bởi",
+      "filterByCourse": "Lọc theo khóa học",
+      "mainTabs": {
+        "studyMaterials": "Tài liệu học tập",
+        "classMaterials": "Tài liệu lớp học"
+      },
+      "tabs": {
+        "library": "Thư viện tài liệu",
+        "contributions": "Đóng góp từ GV"
+      },
+      "categories": {
+        "all": "Tất cả",
+        "grammar": "Ngữ pháp",
+        "vocabulary": "Từ vựng",
+        "reading": "Đọc hiểu",
+        "writing": "Viết",
+        "listening": "Nghe",
+        "speaking": "Nói",
+        "general": "Chung"
+      },
+      "classCategories": {
+        "textbook": "Giáo trình",
+        "media": "Audio/Video"
+      },
+      "views": "Lượt xem",
+      "uploadDate": "Ngày tải lên",
+      "rejectionReason": "Lý do từ chối",
+      "rejectReasonPrompt": "Nhập lý do từ chối:",
+      "titleRequired": "Vui lòng nhập tiêu đề tài liệu",
+      "fetchError": "Không thể tải danh sách tài liệu",
+      "statusUpdated": "Cập nhật trạng thái thành công",
+      "statusUpdateError": "Cập nhật trạng thái thất bại",
+      "confirmDelete": "Bạn có chắc muốn xóa tài liệu \"{title}\"?",
+      "deleteSuccess": "Xóa tài liệu thành công",
+      "deleteError": "Xóa tài liệu thất bại",
+      "uploadSuccess": "Tải lên tài liệu thành công",
+      "uploadError": "Tải lên tài liệu thất bại",
+      "updateSuccess": "Cập nhật tài liệu thành công",
+      "updateError": "Cập nhật tài liệu thất bại",
+      "createSuccess": "Thêm tài liệu thành công",
+      "createError": "Thêm tài liệu thất bại",
+      "pendingApproval": "Đang chờ duyệt",
+      "stats": {
+        "total": "Tổng tài liệu",
+        "published": "Đã duyệt",
+        "pending": "Chờ duyệt",
+        "downloads": "Lượt tải",
+        "views": "Lượt xem"
+      },
+      "status": {
+        "published": "Đã duyệt",
+        "pending": "Chờ duyệt",
+        "rejected": "Bị từ chối",
+        "draft": "Bản nháp"
+      },
+      "filter": {
+        "all": "Tất cả",
+        "allCategories": "Tất cả danh mục",
+        "allStatus": "Tất cả trạng thái",
+        "allVisibility": "Tất cả quyền truy cập",
+        "status": "Trạng thái",
+        "reset": "Đặt lại bộ lọc"
+      },
+      "table": {
+        "id": "ID",
+        "document": "Tài liệu",
+        "category": "Danh mục",
+        "type": "Loại",
+        "size": "Kích thước",
+        "uploadedBy": "Người tải",
+        "downloads": "Lượt tải",
+        "visibility": "Quyền truy cập",
+        "status": "Trạng thái",
+        "actions": "Hành động"
+      },
+      "form": {
+        "title": "Tiêu đề",
+        "titlePlaceholder": "Nhập tiêu đề tài liệu...",
+        "titleRequired": "Vui lòng nhập tiêu đề tài liệu",
+        "fileRequired": "Vui lòng tải lên file",
+        "description": "Mô tả",
+        "descriptionPlaceholder": "Mô tả ngắn về tài liệu...",
+        "category": "Danh mục",
+        "level": "Cấp độ",
+        "type": "Loại file",
+        "visibility": "Quyền truy cập",
+        "status": "Trạng thái",
+        "uploadFile": "Tải lên file",
+        "currentFile": "File hiện tại",
+        "replaceFile": "Thay thế file (tùy chọn)",
+        "dropzone": "Kéo thả file hoặc click để chọn",
+        "fileTypes": "PDF, DOC, PPT, Audio, Video",
+        "allLevels": "Tất cả cấp độ",
+        "uploading": "Đang tải lên...",
+        "uploadComplete": "Tải lên hoàn tất",
+        "uploadFailed": "Tải lên thất bại",
+        "fileUploaded": "File đã được tải lên thành công",
+        "clickToSelect": "Click để chọn file",
+        "orDragDrop": "hoặc kéo thả file vào đây",
+        "supportedFormats": "Hỗ trợ: PDF, DOCX, PPTX - Tối đa 50MB",
+        "supportedMedia": "Hỗ trợ: MP3, MP4, WAV, M4A, WEBM - Tối đa 100MB"
+      },
+      "visibility": {
+        "public": "Công khai",
+        "student": "Chỉ học viên",
+        "teacher": "Chỉ giáo viên"
+      },
+      "actions": {
+        "view": "Xem chi tiết",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa",
+        "download": "Tải xuống",
+        "approve": "Duyệt",
+        "reject": "Từ chối"
+      },
+      "confirmDeleteTitle": "Xác nhận xóa",
+      "confirmDeleteDesc": "Bạn có chắc chắn muốn xóa tài liệu này? Hành động này không thể hoàn tác.",
+      "pagination": {
+        "showing": "Hiển thị {from} - {to} trong tổng số {total} tài liệu"
+      }
+    }
+  },
+  "errors": {
+    "default": "Đã xảy ra lỗi. Vui lòng thử lại.",
+    "INTERNAL_SERVER_ERROR": "Đã xảy ra lỗi hệ thống. Vui lòng thử lại sau.",
+    "VALIDATION_ERROR": "Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.",
+    "NOT_FOUND": "Không tìm thấy tài nguyên.",
+    "FORBIDDEN": "Bạn không có quyền thực hiện hành động này.",
+    "UNAUTHORIZED": "Vui lòng đăng nhập để tiếp tục.",
+    "NETWORK_ERROR": "Không thể kết nối đến máy chủ. Vui lòng kiểm tra kết nối mạng.",
+    "AUTH_INVALID_CREDENTIALS": "Email hoặc mật khẩu không đúng.",
+    "AUTH_ACCOUNT_SUSPENDED": "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ hỗ trợ.",
+    "AUTH_ACCOUNT_INACTIVE": "Tài khoản chưa được kích hoạt. Vui lòng kiểm tra email để xác thực.",
+    "AUTH_EMAIL_EXISTS": "Email này đã được sử dụng.",
+    "AUTH_SESSION_EXPIRED": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+    "AUTH_SESSION_REVOKED": "Phiên đăng nhập đã bị thu hồi. Vui lòng đăng nhập lại.",
+    "AUTH_DEVICE_LIMIT_REACHED": "Bạn đã đăng nhập trên số thiết bị tối đa. Vui lòng đăng xuất một thiết bị khác trước khi đăng nhập.",
+    "AUTH_TOKEN_INVALID": "Token không hợp lệ. Vui lòng đăng nhập lại.",
+    "AUTH_TOKEN_EXPIRED": "Token đã hết hạn. Vui lòng đăng nhập lại.",
+    "AUTH_REFRESH_TOKEN_INVALID": "Refresh token không hợp lệ. Vui lòng đăng nhập lại.",
+    "AUTH_REFRESH_TOKEN_EXPIRED": "Refresh token đã hết hạn. Vui lòng đăng nhập lại.",
+    "AUTH_PASSWORD_RESET_EXPIRED": "Link đặt lại mật khẩu đã hết hạn. Vui lòng yêu cầu link mới.",
+    "AUTH_PASSWORD_RESET_INVALID": "Link đặt lại mật khẩu không hợp lệ.",
+    "AUTH_EMAIL_NOT_VERIFIED": "Email chưa được xác thực. Vui lòng kiểm tra hộp thư.",
+    "AUTH_OAUTH_FAILED": "Đăng nhập bằng mạng xã hội thất bại. Vui lòng thử lại.",
+    "USER_NOT_FOUND": "Không tìm thấy người dùng.",
+    "USER_EMAIL_EXISTS": "Email này đã được sử dụng.",
+    "USER_UPDATE_FAILED": "Cập nhật thông tin thất bại.",
+    "USER_DELETE_FAILED": "Xóa người dùng thất bại.",
+    "EXAM_NOT_FOUND": "Không tìm thấy đề thi.",
+    "EXAM_ALREADY_STARTED": "Bài thi đã bắt đầu.",
+    "EXAM_ALREADY_COMPLETED": "Bài thi đã hoàn thành.",
+    "EXAM_TIME_EXPIRED": "Thời gian làm bài đã hết.",
+    "EXAM_ACCESS_DENIED": "Bạn không có quyền truy cập đề thi này.",
+    "ADMIN_USER_NOT_FOUND": "Không tìm thấy người dùng.",
+    "ADMIN_ROLE_NOT_FOUND": "Không tìm thấy vai trò.",
+    "ADMIN_SESSION_NOT_FOUND": "Không tìm thấy phiên đăng nhập.",
+    "ADMIN_ACTION_FORBIDDEN": "Bạn không có quyền thực hiện hành động này.",
+    "PAYMENT_FAILED": "Thanh toán thất bại. Vui lòng thử lại.",
+    "PAYMENT_INVALID_AMOUNT": "Số tiền không hợp lệ.",
+    "PAYMENT_SUBSCRIPTION_EXPIRED": "Gói đăng ký đã hết hạn."
+  },
+  "messages": {
+    "success": {
+      "saved": "Đã lưu thành công",
+      "deleted": "Đã xóa thành công",
+      "updated": "Đã cập nhật thành công",
+      "created": "Đã tạo thành công",
+      "loggedIn": "Đăng nhập thành công",
+      "loggedOut": "Đã đăng xuất",
+      "passwordReset": "Mật khẩu đã được đặt lại",
+      "emailSent": "Email đã được gửi"
+    },
+    "confirm": {
+      "delete": "Bạn có chắc chắn muốn xóa?",
+      "logout": "Bạn có chắc chắn muốn đăng xuất?",
+      "unsavedChanges": "Bạn có thay đổi chưa lưu. Bạn có chắc chắn muốn rời đi?"
+    }
+  }
+}
