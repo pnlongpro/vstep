@@ -1099,7 +1099,7 @@ export class UserManagementService {
           specialty: user.profile?.specialization || "General",
           courses: classCount,
           students: studentCount,
-          rating: user.profile?.rating || 0,
+          rating: 0, // TODO: Implement rating system
           joined: user.createdAt?.toISOString().split("T")[0] || "",
           avatar: user.avatar,
         };
@@ -1418,7 +1418,7 @@ export class UserManagementService {
       bio: teacher.profile?.bio || "",
       courses: classCount,
       students: studentCount,
-      rating: teacher.profile?.rating || 0,
+      rating: 0, // TODO: Implement rating system
       joined: updatedUser.createdAt?.toISOString().split("T")[0] || "",
     };
   }

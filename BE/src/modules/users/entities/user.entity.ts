@@ -62,6 +62,9 @@ export class User {
   @Column({ length: 36 })
   roleId: string;
 
+  @Column({ type: 'int', default: 2 })
+  deviceLimit: number;
+
   @CreateDateColumn()
   createdAt: Date;
 
