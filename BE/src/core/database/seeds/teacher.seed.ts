@@ -137,8 +137,7 @@ export async function seedTeachers(dataSource: DataSource): Promise<void> {
       userId: savedUser.id,
       specialization: data.specialization,
       degree: data.degree,
-      rating: data.rating,
-      certifications: data.certifications,
+      bio: data.certifications ? `Certifications: ${data.certifications}` : undefined,
     });
 
     await profileRepository.save(profile);
