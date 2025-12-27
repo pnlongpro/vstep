@@ -534,22 +534,4 @@ export class NotificationsService {
       metadata: { streakDays },
     });
   }
-
-  /**
-   * Format notification for WebSocket payload
-   */
-  private formatNotification(notification: Notification) {
-    return {
-      id: notification.id,
-      type: notification.type,
-      title: notification.title,
-      message: notification.message,
-      icon: notification.icon,
-      actionUrl: notification.actionUrl,
-      actionType: notification.actionType,
-      isRead: notification.isRead,
-      createdAt: notification.createdAt,
-      metadata: notification.metadata,
-    };
-  }
 }
