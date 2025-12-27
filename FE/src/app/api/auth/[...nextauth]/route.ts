@@ -1,7 +1,7 @@
 import NextAuth, { type AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -13,10 +13,12 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
+          console.error("[NextAuth] Missing credentials");
           return null;
         }
 
         try {
+          console.log("[NextAuth] Attempting login to:", `${API_URL}/auth/login`);
           const response = await fetch(`${API_URL}/auth/login`, {
             method: "POST",
             headers: {
@@ -28,11 +30,16 @@ export const authOptions: AuthOptions = {
             }),
           });
 
+          console.log("[NextAuth] Response status:", response.status);
+
           if (!response.ok) {
+            const errorText = await response.text();
+            console.error("[NextAuth] Login failed:", response.status, errorText);
             return null;
           }
 
           const data = await response.json();
+          console.log("[NextAuth] Login successful for user:", data.user?.email);
 
           if (data.user) {
             return {
@@ -47,7 +54,7 @@ export const authOptions: AuthOptions = {
 
           return null;
         } catch (error) {
-          console.error("Auth error:", error);
+          console.error("[NextAuth] Auth error:", error);
           return null;
         }
       },
@@ -82,11 +89,17 @@ export const authOptions: AuthOptions = {
     maxAge: 7 * 24 * 60 * 60, // 7 days
   },
   secret: process.env.NEXTAUTH_SECRET || "vstep-secret-key-change-in-production",
-  debug: false,
+  debug: true,
   logger: {
-    error: () => {},
-    warn: () => {},
-    debug: () => {},
+    error: (code, metadata) => {
+      console.error("[NextAuth Error]", code, metadata);
+    },
+    warn: (code) => {
+      console.warn("[NextAuth Warn]", code);
+    },
+    debug: (code, metadata) => {
+      console.log("[NextAuth Debug]", code, metadata);
+    },
   },
 };
 

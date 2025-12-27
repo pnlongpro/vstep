@@ -1,6 +1,6 @@
 export const ENV = {
   // API URLs
-  API_URL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api",
+  API_URL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000",
   WS_URL: process.env.NEXT_PUBLIC_WS_URL || "http://localhost:3000",
   
   // App Config
