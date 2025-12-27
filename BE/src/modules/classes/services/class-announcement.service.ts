@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ClassAnnouncement } from '../entities/class-announcement.entity';
 import { Class } from '../entities/class.entity';
-import { ClassStudent } from '../entities/class-student.entity';
+import { ClassStudent, EnrollmentStatus } from '../entities/class-student.entity';
 import { CreateAnnouncementDto, UpdateAnnouncementDto, AnnouncementResponseDto } from '../dto/class-announcement.dto';
 import { NotificationsService } from '../../notifications/services/notifications.service';
 import { NotificationType, RelatedEntityType } from '../../notifications/entities/notification.entity';
@@ -33,7 +33,7 @@ export class ClassAnnouncementService {
     // If userId provided, check membership (for student access)
     if (userId && classEntity.teacherId !== userId) {
       const membership = await this.classStudentRepo.findOne({
-        where: { classId, studentId: userId, status: 'active' },
+        where: { classId, studentId: userId, status: EnrollmentStatus.ACTIVE },
       });
       if (!membership) {
         throw new ForbiddenException('Bạn không phải thành viên của lớp này');
@@ -257,7 +257,7 @@ export class ClassAnnouncementService {
   private async notifyStudents(classId: string, className: string, announcement: ClassAnnouncement) {
     // Get all active students in class
     const students = await this.classStudentRepo.find({
-      where: { classId, status: 'active' },
+      where: { classId, status: EnrollmentStatus.ACTIVE },
       select: ['studentId'],
     });
 

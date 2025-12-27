@@ -138,7 +138,7 @@ export async function seedTeachers(dataSource: DataSource): Promise<void> {
       specialization: data.specialization,
       degree: data.degree,
       rating: data.rating,
-      certifications: data.certifications,
+      certifications: Array.isArray(data.certifications) ? data.certifications.join(', ') : data.certifications,
     });
 
     await profileRepository.save(profile);

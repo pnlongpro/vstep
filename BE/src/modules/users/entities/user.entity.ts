@@ -59,6 +59,9 @@ export class User {
   @Column({ type: 'datetime', nullable: true })
   lastLoginAt: Date;
 
+  @Column({ type: 'int', default: 2 })
+  deviceLimit: number;
+
   @Column({ length: 36 })
   roleId: string;
 
