@@ -5,7 +5,9 @@ import { DatabaseModule } from './core/database/database.module';
 import { LoggerModule } from './core/logger/logger.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
+import { QuestionsModule } from './modules/questions/questions.module';
 import { PracticeModule } from './modules/practice/practice.module';
+import { ScoringModule } from './modules/scoring/scoring.module';
 import { ExamsModule } from './modules/exams/exams.module';
 import { ClassesModule } from './modules/classes/classes.module';
 import { GamificationModule } from './modules/gamification/gamification.module';
@@ -25,7 +27,9 @@ import { AppConfigService } from './config/app-config.service';
     LoggerModule,
     AuthModule,
     UsersModule,
+    QuestionsModule,
     PracticeModule,
+    ScoringModule,
     ExamsModule,
     ClassesModule,
     GamificationModule,
