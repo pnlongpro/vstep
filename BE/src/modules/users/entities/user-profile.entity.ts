@@ -51,6 +51,15 @@ export class UserProfile {
   @Column({ type: 'int', default: 30 })
   studyGoalMinutes: number;
 
+  @Column({ length: 255, nullable: true, comment: 'Teacher specialization/expertise area' })
+  specialization: string;
+
+  @Column({ length: 255, nullable: true, comment: 'Teacher degree/qualification' })
+  degree: string;
+
+  @Column({ type: 'decimal', precision: 3, scale: 2, default: 0, comment: 'Teacher rating (0-5)' })
+  rating: number;
+
   @CreateDateColumn()
   createdAt: Date;
 

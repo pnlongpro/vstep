@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { Search, Download, Mail, Edit, MoreVertical, Users, Award, TrendingUp, BookOpen } from 'lucide-react';
 

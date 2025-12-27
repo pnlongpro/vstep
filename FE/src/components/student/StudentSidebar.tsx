@@ -1,5 +1,5 @@
 import { Home, BookOpen, Target, Award, Calendar, Settings, Menu, X, MessageSquare, TrendingUp } from 'lucide-react';
-import logoImage from 'figma:asset/0a20b2e75c15f09d98fc24bd0f6b028b4eeb4661.png';
+// import logoImage from 'figma:asset/0a20b2e75c15f09d98fc24bd0f6b028b4eeb4661.png';
 
 interface StudentSidebarProps {
   activePage: string;
@@ -40,7 +40,9 @@ export function StudentSidebar({ activePage, onPageChange, isMobileMenuOpen, onT
           {/* Logo */}
           <div className="p-6 border-b border-gray-700">
             <div className="flex items-center gap-3">
-              <img src={logoImage} alt="VstepPro" className="w-10 h-10" />
+              <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xl">V</span>
+              </div>
               <div>
                 <h2 className="text-xl">VstepPro</h2>
                 <p className="text-sm text-gray-400">Student Panel</p>

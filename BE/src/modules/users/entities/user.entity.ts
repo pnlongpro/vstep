@@ -62,6 +62,9 @@ export class User {
   @Column({ length: 36 })
   roleId: string;
 
+  @Column({ type: 'int', default: 2, comment: 'Maximum number of concurrent login devices' })
+  deviceLimit: number;
+
   @CreateDateColumn()
   createdAt: Date;
 
